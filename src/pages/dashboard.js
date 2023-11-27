@@ -38,17 +38,22 @@ const Dashboard = () => {
     const [shippedCount, setShippedCount] = useState(0);
     const [deliveredCount, setDeliveredCount] = useState(0);
     const [invoicedCount, setInvoicedCount] = useState(0);
-
+    const [totalAmount, setTotalAmount] = useState(0);
+   
     useEffect(() => {
-        const fetchOrderData = async () => {
+      const fetchOrderData = async () => {
           try {
-            const response = await axios.get(
-              "https://api.hjhomelab.com/api/AllOrderInfo"
-            );
-    
-            const orders = response.data;
-    
-            // Count orders based on different statuses
+              const orders = await fetchData(
+                  "https://api.hjhomelab.com/api/AllOrderInfo",
+                  authTokens
+              );
+
+              // Calculate total amount from orders
+              const totalAmount = orders.reduce((acc, order) => acc + parseFloat(order.ordertotal), 0);
+
+              setTotalAmount(totalAmount);
+
+              // Count orders based on different statuses
             const packedOrders = orders.filter(
               (order) => order.deliverystatus === "Pending"
             );
@@ -61,21 +66,22 @@ const Dashboard = () => {
             const completedPaymentOrders = orders.filter(
               (order) => order.payment_status === "Completed"
             );
-    
+
             setPackedCount(packedOrders.length);
             setShippedCount(shippedOrders.length);
             setDeliveredCount(deliveredOrders.length);
             setInvoicedCount(completedPaymentOrders.length);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchOrderData();
-      }, []);
 
+          } catch (error) {
+              console.error("Error fetching order data:", error);
+          }
+      };
+
+      fetchOrderData();
+  }, [authTokens]);
+
+  // Format total amount with two decimal places
+  const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
 
     //   middle Dashboard
       
@@ -101,55 +107,6 @@ const Dashboard = () => {
 
         fetchCustomerData();
     }, [authTokens]);
-
-
-      const [orderCount, setOrderCount] = useState(0);
-      useEffect(() => {
-        const fetchOrderData = async () => {
-          try {
-            setLoading(true);
-        
-            const OrderData = await fetchData("https://api.hjhomelab.com/api/TotalOrders", authTokens);
-
-            // Count total order
-            setOrderCount(OrderData);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchOrderData();
-      }, []);
-
-      const [totalRevenue, setTotalRevenue] = useState(0);
-      useEffect(() => {
-        const fetchOrderData = async () => {
-          try {
-            const response = await axios.get(
-              "https://my-json-server.typicode.com/phuongng/itech_customer_order_data/customer_order"
-            );
-    
-            // Extract order_total values and calculate the total revenue
-            const orderData = response.data;
-            const total = orderData.reduce((acc, order) => acc + order.order_total, 0);
-              
-            // Round the total to two decimal places
-            const roundedTotal = total.toFixed(2);
-
-            setTotalRevenue(roundedTotal);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchOrderData();
-      }, []);
-
-
 
 // bottom Dashboard
 
@@ -189,80 +146,9 @@ useEffect(() => {
 
 // recent order
 
-const [recentOrders, setRecentOrders] = useState([]);
-useEffect(() => {
-    const fetchRecentOrders = async () => {
-      try {
-        const recentOrders = await fetchData('https://api.hjhomelab.com/api/RecentlySold', authTokens);
-
-        // Sort orders based on order_date in descending order
-        const sortedOrders = recentOrders.sort(
-          (a, b) => new Date(b.order_date) - new Date(a.order_date)
-        );
-
-        // Get the first 3 recently ordered items
-        const firstThreeOrders = sortedOrders.slice(0, 3);
-
-        setRecentOrders(firstThreeOrders);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecentOrders();
-  }, []);
 
 
 
-
-// Top Selling
-
-const [topSelling, settopselling] = useState([]);
-useEffect(() => {
-    const fetchTopSelling = async () => {
-      try {
-        const topSelling = await fetchData('https://api.hjhomelab.com/api/TopSelling', authTokens);
-
-        // Get the first 3 top selling items
-        const firstThreeOrders = topSelling.slice(0, 4);
-
-        settopselling(firstThreeOrders);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopSelling();
-  }, []);
-
-
-
-
-  //Pending delivery
-
-const [ItemsInShipping, setOrdersShipping] = useState(0);
-useEffect(() => {
-  const fetchCustomerData = async () => {
-    try {
-      setLoading(true);
-
-      const shipping = await fetchData("https://api.hjhomelab.com/api/OrdersInShipping", authTokens);
-      // Assuming the data contains information about customers
-      setOrdersShipping(shipping[0].count_ordersinshipping);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Call the function
-  fetchCustomerData();
-}, []);
 
 
 
@@ -302,13 +188,13 @@ useEffect(() => {
 
                     <div className="shadowBox saleBox">
                         <div className="saleNumber">
-                        {ItemsInShipping}
+                        {deliveredCount} 
                         
                         </div>
                         <p className="saleText">package</p>
                         <div className="saleIcons delivered">
                         <LiaShippingFastSolid className="saleIcon" />
-                        <p className="saleText">Orders in Transit</p>
+                        <p className="saleText">To be Delivered</p>
                         </div>
                     </div>
 
@@ -340,7 +226,7 @@ useEffect(() => {
                     </div>
 
                    
-                    <div className="profit_number">{`$${totalRevenue}`}</div>
+                    <div className="profit_number">{`$${formattedTotalAmount}`}</div>
                    
                     
                     <div className="revenue_percentage">
@@ -378,7 +264,7 @@ useEffect(() => {
                         <img src={order_vector} className=""/>
                     </div>
                 
-                    <div className="profit_number">{orderCount}</div>
+                    {/* <div className="profit_number">{orderCount}</div> */}
 
                     <div className="revenue_percentage">
                         <div>Total Order</div>
@@ -443,7 +329,7 @@ useEffect(() => {
                 {!loading && !error && (
                     <div>
                     {/* Display the first 5 recently ordered items */}
-                    {topSelling.map((item) => (
+                    {/* {topSelling.map((item) => (
                         <div key={item.id} className="recentorder_detail">
                         <div>
                             <p style={{ float: 'left' }}>
@@ -455,7 +341,7 @@ useEffect(() => {
                             <p>{item.Sold}</p>
                         </div>
                         </div>
-                    ))}
+                    ))} */}
                     </div>
                 )}
                 </div>
@@ -478,7 +364,7 @@ useEffect(() => {
                 {!loading && !error && (
                     <div>
                     {/* Display the first 3 recently ordered items */}
-                    {recentOrders.map((item) => (
+                    {/* {recentOrders.map((item) => (
                         <div key={item.id} className="recentorder_detail">
                         <div>
                             <p style={{ float: 'left' }}>
@@ -505,7 +391,7 @@ useEffect(() => {
                             </p>
                         </div>
                         </div>
-                    ))}
+                    ))} */}
                     </div>
                 )}
                 </div>
