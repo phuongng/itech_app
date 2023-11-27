@@ -407,12 +407,12 @@ useEffect(() => {
                         <div key={item.id} className="recentorder_detail">
                             <div>
                                 <p style={{ float: 'left' }}>
-                                    <b>{item.name}</b>
+                                    <b>{item.customer_name}</b>
                                 </p>
                                 <p>Order ID: {item.order_id}</p>
                             </div>
                             <div>
-                                <p>{item.order_date}</p>
+                                <p>{item.orderdate}</p>
                                 <p
                                     className="completed_button"
                                     style={{
