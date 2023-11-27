@@ -24,7 +24,7 @@ const ViewCustomer = () => {
   
     
     const { name } = useParams();
-    const { user, authTokens } = useContext(AuthContext);
+    const { authTokens } = useContext(AuthContext);
     const [customerData, setCustomerData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -33,41 +33,45 @@ const ViewCustomer = () => {
         const fetchCustomerData = async () => {
             try {
                 setLoading(true);
+                // Log the name to check its value
             
-                const customerData = await fetchData(
-              `https://api.hjhomelab.com/api/GetCustomerDetails?name=${name}`
-            );
-            setCustomerData(customerData);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
+                const fetchCustomerData = await fetchData(
+                    `https://api.hjhomelab.com/api/GetCustomerDetails?name=${name}`,
+                    authTokens
+                );
+
+                setCustomerData(fetchCustomerData[0]);
+                
+
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
         };
-    
+
         fetchCustomerData();
-      }, [name]);
+    }, [name, authTokens]);
 
    const [orderData, setOrderData] = useState([]);
-    
-    useEffect(() => {
-        const fetchOrderData = async () => {
-            try {
-                setLoading(true);
-            
-                const orderData = await fetchData(
-              `https://api.hjhomelab.com/api/AllOrderInfo?name=${name}`
-            );
-            setOrderData(orderData); // Assuming the response is an array of orders
-          } catch (error) {
+   useEffect(() => {
+    const fetchOrderData = async () => {
+        try {
+            setLoading(true);
+        
+            const orderData = await fetchData(`https://api.hjhomelab.com/api/AllOrderInfo?name=${name}`, authTokens);
+            setOrderData(orderData);
+        } catch (error) {
             setError(error);
-          } finally {
+        } finally {
             setLoading(false);
-          }
-        };
+        }
+    };
+
+    fetchOrderData();
+}, [name, authTokens]);
     
-        fetchOrderData();
-      }, [name]);
+ 
 
 
     // Calculate counts and total spending
@@ -92,7 +96,7 @@ const ViewCustomer = () => {
             <div className="dashboardBody">
                 {/* breadcrumb   */}
                 <div className="breadcrumBody">
-                    <Breadcrumb className="breadcrumDiv"/>
+                    <Breadcrumb className="breadcrumDiv" customerName={name} />
                 </div>
 
                 {/* main inventory page */}
@@ -114,7 +118,7 @@ const ViewCustomer = () => {
                                         <div className="customer_profile">
                                             <div className="customer_avatar">
                                                 <PiUserSquareDuotone className="customer_avatar_icon" />
-                                                <p className="customer_name">{customerData.customer_name}</p>
+                                                <p className="customer_name">{customerData.name}</p>
                                             </div>
                                             <div className="active_status">{customerData.active_status}</div>
                                         </div>
@@ -132,7 +136,12 @@ const ViewCustomer = () => {
 
                                             <div>
                                                 <p>Address</p>
-                                                <p><b>{customerData.address}</b></p>
+                                               
+                                                <p>
+                                                    <b>{customerData.street_address}<br />
+                                                    {customerData.city}, {customerData.state} {customerData.zip_code}
+                                                    </b>
+                                                </p>
                                             </div>
 
                                             <div>
@@ -232,12 +241,12 @@ const ViewCustomer = () => {
                                     <p>{order.order_id}</p>
                                 </div>
                                 
-                                <p>{order.order_date}</p>
+                                <p>{order.orderdate}</p>
                                 <p>{order.tracking_id}</p>
-                                <p>${order.order_total}</p>
+                                <p>${order.ordertotal}</p>
                                 <p>{order.payment_status}</p>
-                                <p>{order.delivery_type}</p>
-                                <p>{order.delivery_status}</p>
+                                <p>{order.deliverytype}</p>
+                                <p>{order.deliverystatus}</p>
                                 </div>
                             ))}
                             </div>

@@ -28,7 +28,7 @@ function App() {
 						<Routes>
 							<Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
                 			<Route path="/login" element={<LoginPage/>}/>
-							<Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+							<Route path="/" element={<PrivateRoute><LoginPage/></PrivateRoute>} />
 
 							
 							<Route path='/inventory' element={<PrivateRoute><Inventory/></PrivateRoute>}/>	
@@ -39,7 +39,7 @@ function App() {
 							<Route path='/help' element={<PrivateRoute><Chatbot/></PrivateRoute>} />
 
 							{/* subpages */}
-							<Route path='/customer/view_customer/:customer_name' element={<PrivateRoute><ViewCustomer /></PrivateRoute>} />
+							<Route path='/customer/view_customer/:name' element={<PrivateRoute><ViewCustomer /></PrivateRoute>} />
 							<Route path='/inventory/new_product' element={<PrivateRoute><NewProduct/></PrivateRoute>} />
 							<Route path='/inventory/product_detail' element={<PrivateRoute><Product_detail/></PrivateRoute>} />
 							<Route path='/inventory/category' element={<PrivateRoute><Category/></PrivateRoute>} />

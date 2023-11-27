@@ -171,7 +171,7 @@ useEffect(() => {
             <div className="topDashboard">
                 <div className="topDashboard_content">
                 {/* saleActivity*/}
-            <div className="saleActivity">
+                <div className="saleActivity">
                 <div><h4 className="titletext" >Sale Activity</h4> </div>
                 <div className="saleActivityBox">
                     <div className="shadowBox saleBox">
@@ -420,10 +420,10 @@ useEffect(() => {
                                             item.deliverystatus === "Pending"
                                                 ? "#F8B042"
                                                 : item.deliverystatus === "Lost"
-                                                    ? "#cc0000"
+                                                    ? "#F8B042"
                                                     : item.deliverystatus === "Delivered"
-                                                        ? "#56dc1c"
-                                                        : "#26599F",
+                                                        ? "#26599F"
+                                                        : "#9ACBE6",
                                     }}
                                 >
                                     {item.deliverystatus}

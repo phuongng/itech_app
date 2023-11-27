@@ -15,18 +15,18 @@ import {BiSolidDownArrow} from "react-icons/bi";
 
 const Order = () => {
     const { user, authTokens } = useContext(AuthContext);
-    const [customerData, setCustomerData] = useState([]);
+    const [orderData, setOrderData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [sortOrder, setSortOrder] = useState("asc"); // "asc" for ascending, "desc" for descending
 
     useEffect(() => {
-        const fetchCustomerData = async () => {
+        const fetchrderData = async () => {
             try {
                 setLoading(true);
             
-                const customerData = await fetchData('https://api.hjhomelab.com/api/AllOrderInfo', authTokens);
-                setCustomerData(customerData);
+                const rderData = await fetchData('https://api.hjhomelab.com/api/AllOrderInfo', authTokens);
+                setOrderData(rderData);
             } catch (error) {
                 setError(error);
             } finally {
@@ -34,14 +34,14 @@ const Order = () => {
             }
         };
 
-        fetchCustomerData();
+        fetchrderData();
     }, [authTokens]);
 
     const handleSort = () => {
         const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
         setSortOrder(newSortOrder);
 
-        const sortedData = [...customerData].sort((a, b) => {
+        const sortedData = [...orderData].sort((a, b) => {
             const dateA = new Date(a.order_date);
             const dateB = new Date(b.order_date);
 
@@ -52,15 +52,15 @@ const Order = () => {
             }
         });
 
-        setCustomerData(sortedData);
+        setOrderData(sortedData);
     };
 
-    const orderCount = customerData.length;
-    const pendingOrders = customerData.filter(order => order.delivery_status === "Pending");
+    const orderCount = orderData.length;
+    const pendingOrders = orderData.filter(order => order.delivery_status === "Pending");
     const pendingOrderCount = pendingOrders.length;
-    const deliveredOrders = customerData.filter(order => order.delivery_status === "Delivered");
+    const deliveredOrders = orderData.filter(order => order.delivery_status === "Delivered");
     const deliveredOrdersCount = deliveredOrders.length;
-    const canceledOrders = customerData.filter(order => order.delivery_status === "Lost");
+    const canceledOrders = orderData.filter(order => order.delivery_status === "Lost");
     const canceledOrdersCount = canceledOrders.length;
 
     return (
@@ -141,20 +141,20 @@ const Order = () => {
 
                         {loading && <p>Loading...</p>}
                         {error && <p>Error: {error.message}</p>}
-                        {customerData && (
+                        {orderData && (
                             <div className="customer_list">
-                                {customerData.map((customer) => (
-                                    <div key={customer.id} className="customer_item">
+                                {orderData.map((order) => (
+                                    <div key={order.id} className="customer_item">
                                         <div className="checkbox_produtname">
                                             <input type="checkbox" className="product_checkbox" />
-                                            <p>{customer.order_id}</p>
+                                            <p>{order.order_id}</p>
                                         </div>
-                                        <p>{customer.customer_name}</p>
-                                        <p>{customer.orderdate}</p>
-                                        <p>{customer.deliverytype}</p>
-                                        <p>{customer.tracking_id}</p>
-                                        <p>${customer.ordertotal}</p>
-                                        <p>{customer.deliverystatus}</p>
+                                        <p>{order.customer_name}</p>
+                                        <p>{order.orderdate}</p>
+                                        <p>{order.deliverytype}</p>
+                                        <p>{order.tracking_id}</p>
+                                        <p>${order.ordertotal}</p>
+                                        <p>{order.deliverystatus}</p>
                                     </div>
                                 ))}
                             </div>

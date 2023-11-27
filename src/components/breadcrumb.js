@@ -3,13 +3,13 @@ import titleize from "titleize";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 
-const Breadcrumb = () => {
+const Breadcrumb = (customerName) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
     <div className="breadcrumb">
-      <Link to="/" className="breadcrumb-link">
+      <Link to="/dashboard" className="breadcrumb-link">
         <span style={{ color: "#26599F", fontWeight: "normal" }}>Home</span>
       </Link>
       {pathnames.map((name, index) => {
