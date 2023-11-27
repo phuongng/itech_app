@@ -89,7 +89,12 @@ return (
                  <div className="loginRight">
                     <img src={logo} className="loginImage" />
                     <p className="introduction">
-                        ITECH
+                    A user-friendly web application meticulously crafted for small
+            businesses, providing a seamless platform to efficiently manage
+            their inventory systems. Empowering businesses with intuitive
+            features for streamlined inventory tracking, this application ensures
+            precision and ease in managing stock, enhancing overall operational
+            efficiency
                     </p>
                 </div>
         
