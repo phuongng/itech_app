@@ -55,8 +55,8 @@ const ViewCustomer = () => {
             try {
                 setLoading(true);
             
-                const customerData = await fetchData(
-              `https://api.hjhomelab.com/api/GetCustomerDetails?name=${name}`
+                const orderData = await fetchData(
+              `https://api.hjhomelab.com/api/AllOrderInfo?name=${name}`
             );
             setOrderData(orderData); // Assuming the response is an array of orders
           } catch (error) {
