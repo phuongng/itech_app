@@ -1,0 +1,65 @@
+/* COLOR THEME */
+
+/* 
+/// LOGO Color
+- Dark blue: #26599F
+- Light blue: #9ACBE6
+- Yellow: #F8B042
+
+- Green: #9DBDBA
+- Orange: #FF5500
+*/
+
+/* TEXT Color
+- Grey: #545454
+*/
+
+/* BACKGROUND Color
+- White Smoke: #EDECEC
+*/
+
+/* DROP SHADOW
+box-shadow:  0 4px 4px  rgba(0, 0, 0, 0.5) ;
+*/
+
+
+.shadowBox{
+    box-shadow:  0 4px 4px  rgba(0, 0, 0, 0.25) ;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;    
+
+    @media (max-width: 900px) {
+        border-radius: 8px;
+        padding: 8px;     
+    } 
+
+}
+
+.shadowBox_no_padding{
+    height: 100vh;
+    box-shadow:  0 4px 4px  rgba(0, 0, 0, 0.25) ;
+    background-color: white;
+    border-radius: 10px;   
+}
+
+
+
+h4{
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    color: #26599F;  
+
+    @media (max-width: 1050px) {
+        font-size: 13px; 
+     } 
+     @media (max-width: 770px) {
+        font-size: 10px; 
+     } 
+
+     @media (max-width: 700px) { 
+        font-size: 13px;
+        }  
+
+}

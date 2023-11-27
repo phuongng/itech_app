@@ -1,0 +1,83 @@
+/* customer profile */
+.topCustomer_1 {
+    display: grid;
+    grid-template-rows: repeat(2,auto);
+    gap: 10px;
+}
+.mainCustomer{
+    padding: 20px;
+}
+.customer_profile{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    justify-content: space-between;
+    align-items: start;
+}
+
+.customer_avatar{
+    display: flex;
+    align-items: center;
+}
+
+.customer_name{
+    margin: 0;
+    font-size: 20px;
+   
+}
+
+.customer_avatar_icon{
+    font-size: 60px;
+    color: #26599F;
+}
+
+.active_status{
+    border: 1px solid #26599F;
+    background-color: rgb(38, 89, 159, 0.5);
+    border-radius: 10px;
+    padding: 3px 5px;
+    color: white
+}
+
+.customer_info{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+}
+
+/* spending rate */
+.topOrder_2{
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 20px;
+}
+.spendingrate_bar{
+    height: 30px;
+    border: 1px solid #F8B042;
+    border-radius: 25px;
+    width: 100%;
+    padding: 2px;
+}
+
+.spent_rate{
+    background-color: #F8B042;
+    width: 80%;
+    height: 24px;
+    border-radius: 25px 0 0 25px;
+    border-right: 1px solid gray;
+}
+.customer_spending_history{
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+}
+
+.search_customer{
+    padding: 15px;
+}
+
+.spent_money{
+    display: flex;
+    justify-content: end;
+    padding: 2px;
+    
+
+}

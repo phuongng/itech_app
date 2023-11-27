@@ -1,0 +1,31 @@
+.breadcrumDiv{
+    height: 50px;
+
+ }
+
+ .breadcrumb{
+    height: 50px;
+   
+ }
+.breadcrumb-link{
+    background-color: white;
+    border-radius: 25px;
+    padding: 5px 10px;
+    /* margin-right: 10px; */
+    color: #26599F;
+    text-decoration: none;
+    font-weight: bold;
+
+    
+}
+
+.breadcrumBody{
+    height: 50px;
+    border-bottom: 1px solid grey;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 15px 0;
+
+  
+}
+

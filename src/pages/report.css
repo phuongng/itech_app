@@ -1,0 +1,28 @@
+.mainReport{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 25px;
+    padding: 25px;
+}
+
+.report_revenue{
+    height: 50px;
+    border: 2px solid #26599F;
+    /* background-color: #26599F; */
+    border-radius: 10px 10px 0 0 ;
+    color: #26599F;
+    font-weight: bold;
+   padding-left: 20px;
+   padding-top: 12px;
+}
+
+.shadowBox_no_padding{
+    box-shadow:  0 4px 4px  rgba(0, 0, 0, 0.25) ;
+    background-color: white;
+    border-radius: 10px;   
+}
+
+.revenue_title{
+    margin: 0; 
+}

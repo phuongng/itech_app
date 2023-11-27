@@ -1,0 +1,7 @@
+select ordergraph_orders.orderdate, ordergraph_order_product.quantity,ordergraph_product_details.product_name
+from ordergraph_orders
+join ordergraph_order_product
+	on ordergraph_orders.id = ordergraph_order_product.orders_id
+join ordergraph_product_details
+	on ordergraph_order_product.product_details_id = ordergraph_product_details.id
+where orders_id=1002

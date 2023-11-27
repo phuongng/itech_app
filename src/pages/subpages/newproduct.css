@@ -1,0 +1,282 @@
+.main_new_product{
+    height: 100vh;
+    padding: 25px;
+
+
+}
+
+.newproduct_button{
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    height: 60px;
+}
+
+
+.new_product_form{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding-top: 20px;
+    gap: 20px;
+}
+
+.product_input{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.product_input input{
+    background-color: #EDECEC;
+    box-shadow: none;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.new_product_form_left{
+    padding: 25px;  
+}
+
+
+.product_form_2_columns{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+   
+}
+
+/* .product_form_2_columns select{
+    width: 60%;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 10px;
+    background-color: #EDECEC;
+    border: none;
+} */
+
+.short_description input{
+    height: 100px;
+    width: 70%;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    
+}
+
+  /* Style the select element */
+  .custom-select select {
+    height: 40px;
+    width: 200px;
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #EDECEC;
+  }
+
+  .custom-select select:focus{
+    border-color: #26599F; 
+  }
+
+  /* Style the custom arrow */
+  .custom-select::after {
+    content: "\25BD"; /* Unicode for down-pointing triangle */
+    font-size: 15px;  
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Move the arrow 10px to the left */
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+
+  /* Style the date input */
+  input[type="date"] {
+    padding: 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px;
+    background-color: #EDECEC; /* Background color */
+    outline: none; /* Remove default outline */
+  }
+
+  /* Style the calendar icon (pseudo-element) */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: inline-block; /* Show the default calendar icon in WebKit browsers */
+    padding: 5px; /* Adjust padding to align with the input */
+    background-color: #fff; /* Background color of the icon area */
+    border: 1px solid #ccc; /* Border for the icon area */
+    border-radius: 4px; /* Border radius for the icon area */
+    margin-left: 5px; /* Adjust margin to separate the icon from the input */
+    cursor: pointer; /* Change cursor on hover */
+    /* You can add more styles to the icon as needed */
+  }
+
+  /* Style for when the input is in focus */
+  input[type="date"]:focus {
+    border-color: #26599F; /* Change border color on focus */
+    box-shadow: 0 0 5px rgb(38, 89, 159, 0.5); /* Change box shadow on focus */
+  }
+
+ 
+.product_input select option {
+    color: blue; /* Change the text color */
+    background-color: yellow; /* Change the background color */
+    font-size: 14px; /* Change the font size */
+    /* Add more styles as needed */
+  }
+
+select option[value="none"] {
+    font-weight: bold;
+    background-color: lightgray;
+    color: gray;
+    /* Add more styles as needed */
+  }
+  
+  
+  .custom-select_label .css-1wa3l3zh {
+    color: red; /* Change the color of the label for the first option */
+    /* Add more styles as needed */
+  }
+  
+  
+.new_product_form_right{
+  padding: 25px;
+  display: grid;
+  grid-template-rows: auto 20px auto;
+  gap: 30px;
+  
+
+}
+  
+.new_product-product_image{
+border: 1px solid #26599F;
+border-radius: 15px;
+text-align: center;
+padding: 10px;
+
+}
+
+.new_product-product_image-uploading_image{
+padding-top: 12px;
+}
+
+.new_product-product_image-uploading_icon{
+  width: fit-content;
+  float: inline-end;
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  padding: 5px;
+  font-size: 20px;
+
+}
+
+.new_product-product_image-uploading_icon_small{
+  width: fit-content;
+  float: inline-end;
+  display: flex;
+  justify-content: end;
+
+}
+
+.new_product-product_image-additional_image{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+ gap: 15px;
+align-items: center;
+
+}
+
+.product_image-additional_image{
+  border: 1px solid #26599F;
+  border-radius: 10px;
+  padding: 20px 10px;
+  text-align: center;
+
+
+}
+
+.div-big_additional_image_icon{
+text-align: center;
+}
+.big_additional_image_icon{
+  color:  #26599F;
+  font-size: 30px;
+}
+
+.uploadImage_text_icon{
+  display: flex;
+  align-items: center;
+}
+
+.uploadImage_text{
+  font-size: 8px;
+  display: inline;  
+  margin: 0;
+  margin-left: 5px;
+}
+
+/* input document section */
+.editor{
+  height: 150px;
+  width: 80%;
+  background-color: #EDECEC;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+ .css-1fdsijx-ValueContainer{
+  height: 2px;
+  width: 50px;
+}
+
+
+
+.editor-container {
+  width: 70%;
+  height: 150px;
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+   /* Push the children to the left and right */
+}
+
+.editor-container button{
+  width: 26px;
+  height: 26px;
+  margin-left: 10px;
+
+}
+.editor {
+  width: 95%;
+  
+  /* Your editor styles */
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+position: relative;
+  gap: 10px; /* Adjust the gap between buttons as needed */
+  align-items: start;
+  justify-content: flex-start;
+  
+}
+
+.clear-button{
+  padding: 0;
+ 
+ 
+}
+.clear-icon{
+  height: auto;
+  width: auto;
+  padding: 4px
+}
