@@ -1,9 +1,9 @@
-import React, { Component, Fragment, useState, useEffect,useContext } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
 import Navbar from "../components/Navbar/Navbar";
 import "./dashboard.css";
 import '../components/theme_color.css';
-import axios from 'axios';
+
 import fetchData from "../utils/FletchData";
 
 // top Dashboard icons
@@ -23,11 +23,11 @@ import revenue_vector from '../image/revenue_vector.svg';
 import customer_vector from '../image/customer_vector.svg';
 import order_vector from '../image/order_vector.svg';
 
-import {BiSolidUpArrow} from "react-icons/bi";
-
+// import {BiSolidUpArrow} from "react-icons/bi";
+import {BiSolidDownArrow} from "react-icons/bi";
 // bottom Dashboard icons
 import {MdOutlineKeyboardDoubleArrowRight} from "react-icons/md";
-import {BiSolidDownArrow} from "react-icons/bi";
+
 // import { dark } from "@mui/material/styles/createPalette";
 const Dashboard = () => {
     const { user, authTokens } = useContext(AuthContext);
@@ -39,7 +39,8 @@ const Dashboard = () => {
     const [deliveredCount, setDeliveredCount] = useState(0);
     const [invoicedCount, setInvoicedCount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
-   
+    const [totalOrders, setTotalOrders] = useState(0);
+    const [recentOrders, setRecentOrders] = useState([]);
     useEffect(() => {
       const fetchOrderData = async () => {
           try {
@@ -48,11 +49,20 @@ const Dashboard = () => {
                   authTokens
               );
 
+            // Sort orders based on order_date in descending order
+            const sortedOrders = orders.sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
+
+            // Get the first 3 orders
+            const recentOrders = sortedOrders.slice(0, 3);
+            // Set state for recentOrders
+            setRecentOrders(recentOrders);
+
               // Calculate total amount from orders
               const totalAmount = orders.reduce((acc, order) => acc + parseFloat(order.ordertotal), 0);
-
               setTotalAmount(totalAmount);
-
+              
+              const totalOrders = orders.length;
+                setTotalOrders(totalOrders);
               // Count orders based on different statuses
             const packedOrders = orders.filter(
               (order) => order.deliverystatus === "Pending"
@@ -264,8 +274,8 @@ useEffect(() => {
                         <img src={order_vector} className=""/>
                     </div>
                 
-                    {/* <div className="profit_number">{orderCount}</div> */}
-
+                    <div className="profit_number">{totalOrders}</div>
+                  
                     <div className="revenue_percentage">
                         <div>Total Order</div>
                         {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
@@ -392,6 +402,35 @@ useEffect(() => {
                         </div>
                         </div>
                     ))} */}
+
+                    {recentOrders.map((item) => (
+                        <div key={item.id} className="recentorder_detail">
+                            <div>
+                                <p style={{ float: 'left' }}>
+                                    <b>{item.name}</b>
+                                </p>
+                                <p>Order ID: {item.order_id}</p>
+                            </div>
+                            <div>
+                                <p>{item.order_date}</p>
+                                <p
+                                    className="completed_button"
+                                    style={{
+                                        backgroundColor:
+                                            item.deliverystatus === "Pending"
+                                                ? "#F8B042"
+                                                : item.deliverystatus === "Lost"
+                                                    ? "#cc0000"
+                                                    : item.deliverystatus === "Delivered"
+                                                        ? "#56dc1c"
+                                                        : "#26599F",
+                                    }}
+                                >
+                                    {item.deliverystatus}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
                     </div>
                 )}
                 </div>
