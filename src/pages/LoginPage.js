@@ -53,15 +53,35 @@ return (
                                     <div className="form">
                                     Password:
                                     <div className="password-input">
-                                    <input type={showPassword ? "text" : "password"} name="password" placeholder="enter password"/>
+                                    <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter password"/>
                                     <button type="button" onClick={toggleShowPassword} className="showPasswordButton">
                                         {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                     </button>
                                     </div>
-                                    <input type="submit"/>
+                                    <div className="beforeLogin">
+                                        <div className="rememberMe">
+                                        <Checkbox
+                                            className="checkBox"
+                                            checked={checked}
+                                            onChange={handleChange}
+                                            inputProps={{ "aria-label": "controlled" }}
+                                        />
+                                        <p>Remember me</p>
+                                        </div>
+                                        <div>
+                                        <p>Forgot Password</p>
+                                        </div>
+                                    </div>
+                                    <button className="loginButton" >
+                                        Login
+                                    </button>
                                     </div>     
                                 </label>
-                            </div>    
+                            </div>  
+
+
+
+
                         </form>
                     </div>
             </div>
