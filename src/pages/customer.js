@@ -1,6 +1,6 @@
 import React, { Component, Fragment, useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
-import fetchData from "../utils/FletchData";
+import fetchData from "../utils/FetchData";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { PiUserSquareDuotone } from "react-icons/pi";

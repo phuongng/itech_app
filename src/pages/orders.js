@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
-import fetchData from "../utils/FletchData";
-import axios from 'axios';
+import fetchData from "../utils/FetchData";
+
 import "./dashboard.css";
 import "./order.css";
 import "./inventory";

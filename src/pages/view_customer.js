@@ -1,5 +1,6 @@
 import React, { Component, Fragment, useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
+import fetchData from "../utils/FetchData";
 import fetchData from "../utils/FletchData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -22,7 +23,7 @@ import {PiUserSquareDuotone} from 'react-icons/pi';
 
 const ViewCustomer = () => {
   
-    
+    const { user, authTokens } = useContext(AuthContext);
     const { name } = useParams();
     const [customerData, setCustomerData] = useState({});
     const [loading, setLoading] = useState(true);

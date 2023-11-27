@@ -1,6 +1,7 @@
 import React, { Component, Fragment, useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
-import axios from 'axios';
+import fetchData from "../utils/FetchData";
+
 import "./dashboard.css";
 import "./inventory.css";
 import '../components/breadcrum.css';
@@ -17,7 +18,7 @@ import {BiCategoryAlt} from 'react-icons/bi';
 import {LuFilter} from 'react-icons/lu';
 import {TbArrowsSort} from 'react-icons/tb';
 import {MdOutlineKeyboardDoubleArrowRight} from "react-icons/md";
-import fetchData from "../utils/FletchData";
+
 const Inventory = () => {
 
     const { user, authTokens } = useContext(AuthContext);
