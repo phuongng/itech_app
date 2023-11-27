@@ -50,7 +50,7 @@ const Dashboard = () => {
               );
 
             // Sort orders based on order_date in descending order
-            const sortedOrders = orders.sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
+            const sortedOrders = orders.sort((a, b) => new Date(b.orderdate) - new Date(a.orderdate));
 
             // Get the first 3 orders
             const recentOrders = sortedOrders.slice(0, 3);
