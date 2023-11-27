@@ -1,267 +1,451 @@
-import React, { Component, Fragment, useState, useEffect,useContext } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
-import fetchData from "../utils/FetchData";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-
+import Navbar from "../components/Navbar/Navbar";
 import "./dashboard.css";
-import "./customer.css";
-import "./order.css";
+import '../components/theme_color.css';
 
-import '../components/breadcrum.css';
-import Navbar from '../components/Navbar/Navbar';
+import fetchData from "../utils/FetchData";
 
-// import addnewproduct from '../pages/subpages/newinventory_form';
-import Breadcrumb from '../components/breadcrumb';
+// top Dashboard icons
+import {LuPackageOpen} from "react-icons/lu";
+import {LuPackageCheck} from "react-icons/lu";
+import { LiaShippingFastSolid} from "react-icons/lia";
+import {AiOutlineDollarCircle} from "react-icons/ai";
 
-//import icons
-import {LuFilter} from 'react-icons/lu';
-import {TbArrowsSort} from 'react-icons/tb';
+// Middle Dashboard Icons
+import {GiProfit} from "react-icons/gi";
+// import {GiExpense} from "react-icons/gi";
+import {IoIosPeople} from "react-icons/io";
+import {LuClipboardList} from "react-icons/lu";
 
-import {PiUserSquareDuotone} from 'react-icons/pi';
+import revenue_vector from '../image/revenue_vector.svg';
+// import expense_vector from '../image/expense_vector.svg';
+import customer_vector from '../image/customer_vector.svg';
+import order_vector from '../image/order_vector.svg';
 
-const ViewCustomer = () => {
-  
-    
-    const { name } = useParams();
+// import {BiSolidUpArrow} from "react-icons/bi";
+import {BiSolidDownArrow} from "react-icons/bi";
+// bottom Dashboard icons
+import {MdOutlineKeyboardDoubleArrowRight} from "react-icons/md";
+
+// import { dark } from "@mui/material/styles/createPalette";
+const Dashboard = () => {
     const { user, authTokens } = useContext(AuthContext);
-    const [customerData, setCustomerData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [packedCount, setPackedCount] = useState(0);
+    const [shippedCount, setShippedCount] = useState(0);
+    const [deliveredCount, setDeliveredCount] = useState(0);
+    const [invoicedCount, setInvoicedCount] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [totalOrders, setTotalOrders] = useState(0);
+    const [recentOrders, setRecentOrders] = useState([]);
+    useEffect(() => {
+      const fetchOrderData = async () => {
+          try {
+              const orders = await fetchData(
+                  "https://api.hjhomelab.com/api/AllOrderInfo",
+                  authTokens
+              );
+
+            // Sort orders based on order_date in descending order
+            const sortedOrders = orders.sort((a, b) => new Date(b.orderdate) - new Date(a.orderdate));
+
+            // Get the first 3 orders
+            const recentOrders = sortedOrders.slice(0, 3);
+            // Set state for recentOrders
+            setRecentOrders(recentOrders);
+
+              // Calculate total amount from orders
+              const totalAmount = orders.reduce((acc, order) => acc + parseFloat(order.ordertotal), 0);
+              setTotalAmount(totalAmount);
+              
+              const totalOrders = orders.length;
+                setTotalOrders(totalOrders);
+              // Count orders based on different statuses
+            const packedOrders = orders.filter(
+              (order) => order.deliverystatus === "Pending"
+            );
+            const shippedOrders = orders.filter(
+              (order) => order.deliverystatus === "Shipped"
+            );
+            const deliveredOrders = orders.filter(
+              (order) => order.deliverystatus === "Delivered"
+            );
+            const completedPaymentOrders = orders.filter(
+              (order) => order.payment_status === "Completed"
+            );
+
+            setPackedCount(packedOrders.length);
+            setShippedCount(shippedOrders.length);
+            setDeliveredCount(deliveredOrders.length);
+            setInvoicedCount(completedPaymentOrders.length);
+
+          } catch (error) {
+              console.error("Error fetching order data:", error);
+          }
+      };
+
+      fetchOrderData();
+  }, [authTokens]);
+
+  // Format total amount with two decimal places
+  const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
+
+    //   middle Dashboard
+      
+    const [totalCustomers, setTotalCustomers] = useState(0);
     useEffect(() => {
         const fetchCustomerData = async () => {
             try {
                 setLoading(true);
-            
-                const customerData = await fetchData(
-              `https://api.hjhomelab.com/api/GetCustomerDetails?name=${name}`
-            );
-            setCustomerData(customerData);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
+
+                // Adjust the API endpoint to match your actual endpoint for customer data
+                const customersData = await fetchData("https://api.hjhomelab.com/api/GetCustomerDetails", authTokens);
+
+                // Assuming the data contains information about customers
+                const totalCustomers = customersData.length;
+
+                setTotalCustomers(totalCustomers);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
         };
-    
+
         fetchCustomerData();
-      }, [name]);
+    }, [authTokens]);
 
-   const [orderData, setOrderData] = useState([]);
-    
-    useEffect(() => {
-        const fetchOrderData = async () => {
-            try {
-                setLoading(true);
-            
-                const customerData = await fetchData(
-              `https://api.hjhomelab.com/api/GetCustomerDetails?name=${name}`
-            );
-            setOrderData(orderData); // Assuming the response is an array of orders
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchOrderData();
-      }, [name]);
+// bottom Dashboard
+
+const [totalStockQuantity, setTotalStockQuantity] = useState(0);
+const [lowStockItems, setLowStockItems] = useState([]);
+useEffect(() => {
+    const fetchInventoryData = async () => {
+      try {
+        const inventoryData = await fetchData("https://api.hjhomelab.com/api/Add_Product",authTokens);
+
+        // Extract in_stock_quantity values and calculate the total stock quantity
+        const total = inventoryData.reduce(
+          (acc, item) => acc + item.in_stock_total,
+          0
+        );
+
+        // Filter items with quantity less than or equal to 10
+        const lowStockItems = inventoryData.filter(
+          (item) => item.in_stock_total <= 10
+        );
+
+        const lowstockitemcount = inventoryData.filter(
+          (item) => item.in_stock_total <= 10
+        );
+
+        setTotalStockQuantity(total);
+        setLowStockItems(lowstockitemcount);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInventoryData();
+  }, []);
+
+// recent order
 
 
-    // Calculate counts and total spending
-  const pendingOrders = orderData.filter(order => order.delivery_status === "Pending");
-  const completedOrders = orderData.filter(order => order.delivery_status === "Completed");
-  const canceledOrders = orderData.filter(order => order.delivery_status === "Canceled");
-  const returnedOrders = orderData.filter(order => order.delivery_status === "Returned");
-  const damagedOrders = orderData.filter(order => order.delivery_status === "Damaged");
 
-  const totalPendingOrders = pendingOrders.length;
-  const totalCompletedOrders = completedOrders.length;
-  const totalCanceledOrders = canceledOrders.length;
-  const totalReturnedOrders = returnedOrders.length;
-  const totalDamagedOrders = damagedOrders.length;
 
-  const totalSpending = orderData.reduce((total, order) => total + parseFloat(order.order_total), 0);
-  const spendingRatePercentage = (totalSpending / 6000) * 100;
 
-    return (
+
+
+  return (user ? (
         <>
-            <Navbar />
-            <div className="dashboardBody">
-                {/* breadcrumb   */}
-                <div className="breadcrumBody">
-                    <Breadcrumb className="breadcrumDiv"/>
-                </div>
-
-                {/* main inventory page */}
-                <div className="mainOrder">
-                    {/* <div> <input type="search" 
-                    placeholder="Enter customer name or ID"
-                     className="search_customer">
-                        </input>
-                    </div> */}
-
-                    <div className="topOrder">
-                        {/* topOrder first box */}
-                        <div className="topCustomer_1 shadowBox">
-                            <div className="view-customer-container" >
-                                {loading && <p>Loading...</p>}
-                                {error && <p>Error: {error.message}</p>}
-                                {!loading && !error && (
-                                    <>
-                                        <div className="customer_profile">
-                                            <div className="customer_avatar">
-                                                <PiUserSquareDuotone className="customer_avatar_icon" />
-                                                <p className="customer_name">{customerData.customer_name}</p>
-                                            </div>
-                                            <div className="active_status">{customerData.active_status}</div>
-                                        </div>
-
-                                        <div className="customer_info">
-                                            <div>
-                                                <p>Phone Number</p>
-                                                <p><b>{customerData.phone_number}</b></p>
-                                            </div>
-
-                                            <div>
-                                                <p>Email</p>
-                                                <p><b>{customerData.email}</b></p>
-                                            </div>
-
-                                            <div>
-                                                <p>Address</p>
-                                                <p><b>{customerData.address}</b></p>
-                                            </div>
-
-                                            <div>
-                                                <p>Date of Birth</p>
-                                                <p><b>{customerData.dob}</b></p>
-                                            </div>
-
-                                        </div>
-                                    </>
-                                )}
-                            </div>
+        <Navbar />
+        <div className="dashboardBody">
+            <div className="dashboard">
+            {/* first row - top dashboard will include sale activity section and inventory summary section*/}
+            <div className="topDashboard">
+                <div className="topDashboard_content">
+                {/* saleActivity*/}
+            <div className="saleActivity">
+                <div><h4 className="titletext" >Sale Activity</h4> </div>
+                <div className="saleActivityBox">
+                    <div className="shadowBox saleBox">
+                        <div className="saleNumber">
+                        {packedCount}
                         </div>
-
-                        {/* topOrder 2nd box */}
-                        <div className="topOrder_2 shadowBox">
-                            <p>Spending Rate</p>
-                            
-
-                            <div className="spendingrate_bar">
-                                <div className="spent_rate" style={{ width: `${spendingRatePercentage}%`, backgroundColor: getSpendingRateColor(spendingRatePercentage) }}>
-                                <div className="spent_money">${totalSpending.toFixed(2)}</div>
-                                </div>
-                            </div>
-
-                         
-                            {/* customer_spending_history */}
-                            <div className="customer_spending_history">
-                                <div className="allproduct">
-                                    <div>All order</div>
-                                    <div>{orderData.length}</div>
-                                </div>
-
-                                <div className="allproduct">
-                                    <div>Pending</div>
-                                    <div>{totalPendingOrders}</div>
-                                </div>
-                                <div className="allproduct">
-                                    <div>Completed</div>
-                                    <div>{totalCompletedOrders}</div>
-
-                                </div>
-                                <div className="allproduct">
-                                    <div>Canceled</div>
-                                    <div>{totalCanceledOrders}</div>
-                                </div>
-                                <div className="allproduct">
-                                    <div>Returned</div>
-                                    <div>{totalReturnedOrders}</div>
-                                </div>
-                                <div className="allproduct">
-                                    <div>Damaged</div>
-                                    <div>{totalDamagedOrders}</div>
-                                </div>
-                            </div>
-                            {/* end customer_spending_history */}
-
+                        <p className="saleText">package</p>
+                        <div className="saleIcons packed">
+                        <LuPackageOpen className="saleIcon" />
+                        <p className="saleText">To be Packed</p>
                         </div>
-
                     </div>
 
-
-                    <div className="bottomInventory">
-                        <div className="inventory_summary_search">
-                            <h4>Order History</h4>
-                            <input type="search" className="inventory_search" placeholder="Search.."></input>
-                            <div> <LuFilter />Filter</div>
-                            <div><TbArrowsSort />Sort</div>
+                    <div className="shadowBox saleBox">
+                        <div className="saleNumber">
+                        {shippedCount} 
+                            </div>
+                        <p className="saleText">package</p>
+                        <div className="saleIcons shipped">
+                        <LuPackageCheck className="saleIcon" />
+                        <p className="saleText">To be Shipped</p>
                         </div>
+                    </div>
 
-                        {/* inventory_detail name */}
-                        <div>
-                        <div className="inventory_detail border_bottom">
-                            <div className="customer_item">
-                            <div className="checkbox_produtname">
-                            <input type="checkbox" className="product_checkbox" />
-                            <p>Order ID</p>
-                            
-                            </div>
-                            <p>Order Date</p>
-                            <p>Tracking ID</p>
-                            <p>Order Total</p>
-                            <p>Payment Status</p>
-                            <p>Delivery Type</p>
-                            <p>Delivery Status</p>
-                            </div>
+                    <div className="shadowBox saleBox">
+                        <div className="saleNumber">
+                        {deliveredCount} 
                         
                         </div>
-
-                        {loading && <p>Loading...</p>}
-                        {error && <p>Error: {error.message}</p>}
-                        {customerData && (
-                            <div className="customer_list">
-                            {orderData.map((order) => (
-                                <div key={order.id} className="customer_item">
-                                <div className="checkbox_produtname">
-                                    <input type="checkbox" className="product_checkbox" />
-                                    <p>{order.order_id}</p>
-                                </div>
-                                
-                                <p>{order.order_date}</p>
-                                <p>{order.tracking_id}</p>
-                                <p>${order.order_total}</p>
-                                <p>{order.payment_status}</p>
-                                <p>{order.delivery_type}</p>
-                                <p>{order.delivery_status}</p>
-                                </div>
-                            ))}
-                            </div>
-                        )}
+                        <p className="saleText">package</p>
+                        <div className="saleIcons delivered">
+                        <LiaShippingFastSolid className="saleIcon" />
+                        <p className="saleText">To be Delivered</p>
                         </div>
-
                     </div>
 
+                    <div className="shadowBox saleBox">
+                        <div className="saleNumber">
+                        {invoicedCount}
+
+                        </div>
+                        <p className="saleText">quantity</p>
+                        <div className="saleIcons invoiced">
+                        <AiOutlineDollarCircle className="saleIcon" />
+                        <p className="saleText">To be Invoiced</p>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+
+            </div> {/* end topDashboard_content */}
+            </div> {/* end topDashboard */}
+
+            {/* middle row - middle dashboard*/}
+            <div className="middleDashboard">  
+
+            {/* Revenue   */}
+                <div className="total Revenue shadowBox">
+                    <div className="icon_vector">
+                        <GiProfit className="profit_icon"/>
+                        <img src={revenue_vector} className=""/>    
+                    </div>
+
+                   
+                    <div className="profit_number">{`$${formattedTotalAmount}`}</div>
+                   
+                    
+                    <div className="revenue_percentage">
+                        <div>Total Revenue</div>    
+                        {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div>     */}
+                    </div>    
+                </div>
+
+
+
+           {/* customer */}
+           <div className="total Customer shadowBox"> 
+                <div className="icon_vector">
+                <IoIosPeople className="profit_icon"/>
+                <img src={customer_vector} className=""/>
+                </div>
+                
+               
+                <div className="profit_number">{totalCustomers}</div>
+                 
+
+                <div className="revenue_percentage">
+                    <div>Total Customer</div>
+                    {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
+                </div>
+                  
+                
+                </div>
+
+
+                {/* order */}
+                <div className="total Order shadowBox" >
+                    <div className="icon_vector">
+                        <LuClipboardList className="profit_icon"/>
+                        <img src={order_vector} className=""/>
+                    </div>
+                
+                    <div className="profit_number">{totalOrders}</div>
+                  
+                    <div className="revenue_percentage">
+                        <div>Total Order</div>
+                        {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
+                    </div>
+                  
                 </div>
 
             </div>
-        </>
+
+
+            {/* bottom dashboard - bottom row */}
+            <div className="bottomDashboard">
+                <div className="inventory shadowBox">
+                    <div className="inventory_viewall">
+                        <div><h4>Inventory</h4></div>
+                        <div><p className="viewall">view all <MdOutlineKeyboardDoubleArrowRight/> </p></div>
+                    </div>
+
+                    <div className="instock-inventory">
+                        <div className="stockText">
+                            <div className="instockText"><b>Total In-stock Quantity</b></div>
+                            <div className="stock_quantity">{totalStockQuantity}</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="lowStock">This item is low on stock, please order it soon!</div>
+                    </div>
+
+                    {/* list of items low of stock */}
+                    <div>
+                        <div className="topselling_description">
+                        <div>Product Name</div>
+                        <div>Quantity</div>
+                        </div>
+                    
+                    <div>
+                        {lowStockItems.map((item) => (     
+                        <div className="topselling_description" key={item.id}>
+                        <p>{item.product_name}</p>
+                        <p>{item.in_stock_total} </p>
+                        </div>
+                        ))}
+                      
+                    </div>  
+
+                    </div>
+                               
+                </div>
+
+                {/* topSelling */}
+                <div className="topSelling shadowBox"> 
+                    <div className="inventory_viewall">
+                        <div><h4>Top Selling</h4></div>
+                        <div><p>This month <BiSolidDownArrow/> </p></div>
+                    </div>
+                    <div>
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error.message}</p>}
+
+                {!loading && !error && (
+                    <div>
+                    {/* Display the first 5 recently ordered items */}
+                    {/* {topSelling.map((item) => (
+                        <div key={item.id} className="recentorder_detail">
+                        <div>
+                            <p style={{ float: 'left' }}>
+                            
+                            </p>
+                            <p>{item.product_name}</p>
+                        </div>
+                        <div>
+                            <p>{item.Sold}</p>
+                        </div>
+                        </div>
+                    ))} */}
+                    </div>
+                )}
+                </div>
+    
+                </div>
+                
+                
+
+                {/* recentOrders */}
+                <div className="recentOrders shadowBox"> 
+                <div className="inventory_viewall">
+                    <div><h4>Recent Orders</h4></div>
+                    <div><p>view all <MdOutlineKeyboardDoubleArrowRight/> </p></div>
+                </div>
+
+                <div>
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error.message}</p>}
+
+                {!loading && !error && (
+                    <div>
+                    {/* Display the first 3 recently ordered items */}
+                    {/* {recentOrders.map((item) => (
+                        <div key={item.id} className="recentorder_detail">
+                        <div>
+                            <p style={{ float: 'left' }}>
+                            <b>{item.name}</b>
+                            </p>
+                            <p>Order ID: {item.order_id}</p>
+                        </div>
+                        <div>
+                            <p>{item.order_date}</p>
+                            <p
+                              className="completed_button"
+                              style={{
+                                backgroundColor:
+                                  item.deliverystatus === "Pending"
+                                    ? "#F8B042"
+                                    : item.deliverystatus === "Lost"
+                                    ? "#cc0000"
+                                    : item.deliverystatus === "Delivered"
+                                    ? "#56dc1c"  
+                                    : "#26599F",
+                              }}
+                            >
+                            {item.deliverystatus}
+                            </p>
+                        </div>
+                        </div>
+                    ))} */}
+
+                    {recentOrders.map((item) => (
+                        <div key={item.id} className="recentorder_detail">
+                            <div>
+                                <p style={{ float: 'left' }}>
+                                    <b>{item.customer_name}</b>
+                                </p>
+                                <p>Order ID: {item.order_id}</p>
+                            </div>
+                            <div>
+                                <p>{item.orderdate}</p>
+                                <p
+                                    className="completed_button"
+                                    style={{
+                                        backgroundColor:
+                                            item.deliverystatus === "Pending"
+                                                ? "#F8B042"
+                                                : item.deliverystatus === "Lost"
+                                                    ? "#cc0000"
+                                                    : item.deliverystatus === "Delivered"
+                                                        ? "#56dc1c"
+                                                        : "#26599F",
+                                    }}
+                                >
+                                    {item.deliverystatus}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
+                )}
+                </div>
+  
+                </div>
+            </div>
+
+          </div> {/* end dashboard */}
+        </div> {/* end dashboardBody */}
+        </>):(
+        <div>
+            <p>You are not logged in, redirecting...</p>
+        </div>
+        )
     );
 };
-
-   // Define a function to determine the color based on the spending rate
-   const getSpendingRateColor = (percentage) => {
-    if (percentage >= 75) {
-        return '#26599F'; // or any color you prefer
-    } else if (percentage >= 50) {
-        return "#9ACBE6";
-    } else {
-        return '#F8B042';
-    }
-    };
-
-export default ViewCustomer;
+ 
+export default Dashboard;
