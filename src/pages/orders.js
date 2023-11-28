@@ -42,8 +42,8 @@ const Order = () => {
         setSortOrder(newSortOrder);
 
         const sortedData = [...orderData].sort((a, b) => {
-            const dateA = new Date(a.order_date);
-            const dateB = new Date(b.order_date);
+            const dateA = new Date(a.orderdate);
+            const dateB = new Date(b.orderdate);
 
             if (newSortOrder === "asc") {
                 return dateA - dateB;
