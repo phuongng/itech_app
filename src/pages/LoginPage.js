@@ -50,14 +50,14 @@ return (
                             <div className="form">
                                 <label>
                                     Username:
-                                    <input type="text" name="username" placeholder="Enter username"/>
+                                    <input type="text" name="username" placeholder="Enter username" className='search'/>
                                 </label>
                             </div>        
                             
                             <div className="form">
                                 <label>Password:  
                                     <div className="password-input">
-                                    <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter password"/>
+                                    <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter password" className='search'/>
                                     <button type="button" onClick={toggleShowPassword} className="showPasswordButton">
                                         {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                     </button>

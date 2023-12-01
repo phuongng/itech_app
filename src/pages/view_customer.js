@@ -244,7 +244,7 @@ const ViewCustomer = () => {
                                 <p>{order.orderdate}</p>
                                 <p>{order.tracking_id}</p>
                                 <p>${order.ordertotal}</p>
-                                <p>{order.payment_status}</p>
+                                <p>{order.paymentstatus}</p>
                                 <p>{order.deliverytype}</p>
                                 <p>{order.deliverystatus}</p>
                                 </div>

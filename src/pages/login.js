@@ -66,6 +66,7 @@ const Login = () => {
                   placeholder="Enter username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  className='search'
                 />
               </label>
             </div>
@@ -77,6 +78,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className='search'
                   />
                   <button
                     type="button"

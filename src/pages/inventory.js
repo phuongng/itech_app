@@ -162,7 +162,7 @@ const Inventory = () => {
                             <div key={item.id} className="inventory_item border_bottom">
                             <div className="checkbox_produtname">
                                 <input type="checkbox" className="product_checkbox" />
-                                <p>{item.id}</p>
+                                <p>{item.product_id}</p>
                             </div>
                             <p>{item.product_name}</p>
                             <p>{item.category}</p>

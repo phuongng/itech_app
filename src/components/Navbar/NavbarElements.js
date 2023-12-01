@@ -19,33 +19,19 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 
-  @media (max-width: 1024px) { 
-	width: 160px;
-
-} 
-
 @media (max-width: 1000px) { 
 	width: 150px;
 } 
 
-@media (max-width: 740px) {
-	width: 130px;
+@media (max-width: 700px) {
+	width: 100px;
 } 
 
-@media (max-width: 600px) {
-	width: 110px;
-} 
-
-// @media (max-width: 530px) { 
-// 	width: 80px;
-// }
-	@media (max-width: 550px) { 
+	@media (max-width: 600px) { 
 		width: 50px;
 
 	}
 
-/* Third Nav */
-/* justify-content: flex-start; */
 
 
 `; 
