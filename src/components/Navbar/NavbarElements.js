@@ -19,10 +19,13 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 
-@media (max-width: 1000px) { 
+@media (max-width: 1024px) { 
 	width: 150px;
 } 
 
+@media (max-width: 900px) {
+	width: 130px;
+} 
 @media (max-width: 700px) {
 	width: 100px;
 } 

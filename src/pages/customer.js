@@ -73,7 +73,7 @@ const Customer = () => {
 
           {filteredCustomers.map((customer) => (
             <div key={customer.customer_id} className="customer_name_link">
-              <Link to={`/customer/view_customer/${customer.name}`} >
+              <Link to={`/customer/${customer.name}`}>
 
                 <div className="customer_profile">
                   <div className="customer_avatar">

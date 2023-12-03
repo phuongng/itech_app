@@ -77,8 +77,9 @@
 
 .spent_money{
     display: flex;
-    justify-content: end;
-    padding: 2px;
-    
+    justify-content:center;
+    padding: 4px;
+    font-size: 12px;
+   
 
 }

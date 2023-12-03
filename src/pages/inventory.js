@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState, useEffect,useContext } from "react";
+import React, {useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
 
@@ -14,14 +14,11 @@ import { Link } from "react-router-dom";
 
 //import icons
 import {RiFileList3Line} from 'react-icons/ri';
-import {BiCategoryAlt} from 'react-icons/bi';
-import {LuFilter} from 'react-icons/lu';
 import {TbArrowsSort} from 'react-icons/tb';
-import {MdOutlineKeyboardDoubleArrowRight} from "react-icons/md";
 
 const Inventory = () => {
 
-    const { user, authTokens } = useContext(AuthContext);
+    const { authTokens } = useContext(AuthContext);
     const [inventoryData, setInventoryData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -50,13 +47,13 @@ const Inventory = () => {
         setSortOrder(newSortOrder);
     
         const sortedData = [...inventoryData].sort((a, b) => {
-            const nameA = a.product_name.toLowerCase(); // Ignore case for sorting
-            const nameB = b.product_name.toLowerCase();
+            const quantityA = a.in_stock_total;
+            const quantityB = b.in_stock_total;
     
             if (newSortOrder === "asc") {
-                return nameA.localeCompare(nameB); // Use localeCompare for string comparison
+                return quantityA - quantityB; // Sort in ascending order
             } else {
-                return nameB.localeCompare(nameA);
+                return quantityB - quantityA; // Sort in descending order
             }
         });
     
@@ -130,18 +127,19 @@ const Inventory = () => {
                    <div className="inventory_summary_search">
                     <h4>Inventory Summary</h4>
                     <input type="seach" className="inventory_search" placeholder="Search.."></input>
-                    <div> <LuFilter />Filter</div>
-                    <div onClick={handleSort}><TbArrowsSort />Sort</div>
+                    {/* <div> <LuFilter />Filter</div> */}
+                    <div onClick={handleSort}><TbArrowsSort />Sort by Quantity</div>
                    </div>
 
                    {/* inventory_detai */}
                    <div>
-                    <div className="inventory_detail border_bottom">
-                        <div className='inventory_item'>
-                        <div className="checkbox_produtname">
+                    <div>
+                        <div className='inventory_item inventory_item_title'>
+                        {/* <div className="checkbox_produtname">
                         <input type="checkbox" className="product_checkbox" />
                         <p>Product ID</p>
-                        </div>
+                        </div> */}
+                        <p>Product ID</p>
                         <p>Product Name</p>
                         <p>Category</p>
                         <p>Unit Price</p>
@@ -157,13 +155,15 @@ const Inventory = () => {
                     {loading && <p>Loading...</p>}
                     {error && <p>Error: {error.message}</p>}
                     {inventoryData && (
-                        <div className="inventory_list">
+                        <div>
                         {inventoryData.map((item) => (
-                            <div key={item.id} className="inventory_item border_bottom">
-                            <div className="checkbox_produtname">
+                            <div key={item.id} className="inventory_item ">
+                            {/* <div className="checkbox_produtname">
                                 <input type="checkbox" className="product_checkbox" />
                                 <p>{item.product_id}</p>
-                            </div>
+                            </div> */}
+
+                            <p>{item.product_id}</p>
                             <p>{item.product_name}</p>
                             <p>{item.category}</p>
                             <p>{item.unit_price}</p>

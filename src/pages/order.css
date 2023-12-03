@@ -4,8 +4,8 @@
     display: grid;
     grid-template-rows: auto auto 1fr;
     gap: 25px;
-    padding: 25px;
-    padding-bottom: 0px;
+    padding: 25px 25px 50px;
+   
 }
 
 .topOrder{
@@ -42,10 +42,10 @@
   .customer_item {
     border-bottom: 1px solid #ddd;
     padding: 10px;
-    margin: 5px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-   gap: 20px;
+    justify-content: space-between;
+    /* gap: 20px; */
     width: 100%;
   }
   
@@ -57,4 +57,9 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
+  }
+
+  .center_text{
+    display: flex;
+    justify-content: center;
   }

@@ -151,8 +151,7 @@ text-align: center;
 }
 
 .inventory_detail{
-    display: flex;
-    
+    display: flex; 
     /* border-bottom: 1px solid #26599F; */
     padding: 5px 0;
     
@@ -176,17 +175,18 @@ text-align: center;
     border-bottom: 1px solid #26599F;
 }
 
-.inventory_list{
-    display: flex;
-    flex-wrap: wrap;
+.inventory_item_title{
+    font-weight: bold;
+    
 }
 
 .inventory_item{
     border-bottom: 1px solid #ddd;
     padding: 10px;
-    margin: 5px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-   gap: 20px;
+    justify-content: space-between;
+    /* gap: 20px; */
     width: 100%;
+   
 }

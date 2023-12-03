@@ -1,74 +1,102 @@
-import React, { Component } from 'react';
-import { MessageBox, MessageList } from 'react-chat-elements';
+import React, { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar/Navbar';
 import './help.css';
+import '../components/theme_color.css';
+import '../pages/dashboard.css';
 
-class Chatbot extends Component {
-  constructor() {
-    super();
-    this.state = {
-      messages: [],
-      inputText: '',
-    };
-  }
+const Chatbot = () => {
+  const [messages, setMessages] = useState([]);
+  const [inputText, setInputText] = useState('');
 
-  handleInputChange = (e) => {
-    this.setState({ inputText: e.target.value });
-  }
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+  };
 
-  handleSendMessage = () => {
+  const handleSendMessage = () => {
     const newMessage = {
       position: 'right',
       type: 'text',
-      text: this.state.inputText,
+      text: inputText,
       date: new Date(),
     };
 
-    this.setState((prevState) => ({
-      messages: [...prevState.messages, newMessage],
-      inputText: '',
-    }));
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setInputText('');
 
-    // You can handle chatbot responses here
-    // For example, you can call an API to get chatbot responses
-  }
+    // Handle chatbot responses here (e.g., call an API to get responses)
+    handleChatbotResponse(inputText);
+  };
 
-  
+  const handleChatbotResponse = (userInput) => {
+    // Simulate chatbot response (replace with actual logic or API call)
+    const botResponse = getBotResponse(userInput);
 
-  render() {
-    return (
-      <div className="chatbot">
-       <MessageList
-        className="message-list"
-        lockable={true}
-        toBottomHeight={'100%'}
-        dataSource={this.state.messages}
-        />
+    const newBotMessage = {
+      position: 'left',
+      type: 'text',
+      text: botResponse,
+      date: new Date(),
+    };
 
-        <div className="input-box">
-        <input
-            type="text"
-            value={this.state.inputText}
-            onChange={this.handleInputChange}
-            placeholder="Type your message..."
-        />
-        <button onClick={this.handleSendMessage}>Send</button>
-        </div>
+    setMessages((prevMessages) => [...prevMessages, newBotMessage]);
+  };
 
-        <MessageBox
-            reply={{
-                photoURL: 'https://facebook.github.io/react/img/logo.svg',
-                title: 'elit magna',
-                titleColor: '#8717ae',
-                message: 'Aliqua amet incididunt id nostrud',
-            }}
-            onReplyMessageClick={() => console.log('reply clicked!')}
-            position={'left'}
-            type={'text'}
-            text={'Tempor duis do voluptate enim duis velit veniam aute ullamco dolore duis irure.'}
+  const getBotResponse = (userInput) => {
+    // Replace with actual chatbot logic or API call
+    // Here, a simple example is used
+    const lowerCaseInput = userInput.toLowerCase();
+
+    if (lowerCaseInput.includes('hello') || lowerCaseInput.includes('hi')) {
+      return 'Hello there! How can I assist you today?';
+    } else if (lowerCaseInput.includes('how are you')) {
+      return 'I am just a bot, but thanks for asking!';
+    } else if (lowerCaseInput.includes('can you help me')) {
+      return 'Yes, what do you need help with?';
+    } else {
+      return 'I did not understand that. Please ask another question.';
+    }
+  };
+
+  // Add a greeting message when the component mounts
+  useEffect(() => {
+    const greetingMessage = {
+      position: 'left',
+      type: 'text',
+      text: 'Hello! I am your chatbot. Feel free to ask me anything.',
+      date: new Date(),
+    };
+
+    setMessages([greetingMessage]);
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <div className='dashboardBody'>
+        <div className='chatbotBody shadowBox'>
+          <div className='display_message'>
+            {messages.map((message, index) => (
+              <div key={index} className={`message-container ${message.position === 'right' ? 'right' : ''}`}>
+                {message.text}
+              </div>
+            ))}
+          </div>
+
+          <div className='input_message'>
+            <input
+              type='text'
+              value={inputText}
+              onChange={handleInputChange}
+              placeholder='Type your message...'
             />
+            <button onClick={handleSendMessage} className='sendMessage_button'>
+              Send
+            </button>
+          </div>
+        </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default Chatbot;

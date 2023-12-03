@@ -56,12 +56,17 @@ const Order = () => {
     };
 
     const orderCount = orderData.length;
-    const pendingOrders = orderData.filter(order => order.delivery_status === "Pending");
+    const pendingOrders = orderData.filter(order => order.deliverystatus === "Pending");
     const pendingOrderCount = pendingOrders.length;
-    const deliveredOrders = orderData.filter(order => order.delivery_status === "Delivered");
+    const deliveredOrders = orderData.filter(order => order.deliverystatus === "Delivered");
     const deliveredOrdersCount = deliveredOrders.length;
-    const canceledOrders = orderData.filter(order => order.delivery_status === "Lost");
+    const canceledOrders = orderData.filter(order => order.deliverystatus === "Lost");
     const canceledOrdersCount = canceledOrders.length;
+    const damamgedOrders = orderData.filter(order => order.deliverystatus === "Damaged");
+    const damamgedOrdersCount = damamgedOrders.length;
+    const returnedOrders = orderData.filter(order => order.deliverystatus === "Returned");
+    const returnedOrdersCount = returnedOrders.length;
+
 
     return (
         <>
@@ -105,11 +110,11 @@ const Order = () => {
                             </div>
                             <div className="allproduct">
                                 <div>Returned</div>
-                                <div></div>
+                                <div>{returnedOrdersCount}</div>
                             </div>
                             <div className="allproduct">
                                 <div>Damaged</div>
-                                <div></div>
+                                <div>{damamgedOrdersCount}</div>
                             </div>
                         </div>
                     </div>
@@ -119,17 +124,19 @@ const Order = () => {
                     <div className="inventory_summary_search">
                         <h4>Customer Orders</h4>
                         <input type="seach" className="inventory_search" placeholder="Search.."></input>
-                        <div onClick={handleSort}><TbArrowsSort />Sort</div>
+                        <div onClick={handleSort}><TbArrowsSort />Sort by Date</div>
                         {/* <div><LuFilter />Filter</div> */}
                     </div>
 
                     <div>
                         <div className="inventory_detail border_bottom">
                             <div className="customer_item">
-                                <div className="checkbox_produtname">
+                                {/* <div className="checkbox_produtname">
                                     <input type="checkbox" className="product_checkbox" />
                                     <p>Order ID</p>
-                                </div>
+                                </div> */}
+
+                                <p>Order ID</p>
                                 <p>Customer Name</p>
                                 <p>Order Date</p>
                                 <p>Delivery Type</p>
@@ -143,20 +150,24 @@ const Order = () => {
                         {error && <p>Error: {error.message}</p>}
                         {orderData && (
                             <div className="customer_list">
-                                {orderData.map((order) => (
+                                {orderData.map((order) => {
+                                const [datePart, timePart] = order.orderdate.split("T"); // Fix: Extract date and time here
+                                return(
                                     <div key={order.id} className="customer_item">
-                                        <div className="checkbox_produtname">
-                                            <input type="checkbox" className="product_checkbox" />
-                                            <p>{order.order_id}</p>
-                                        </div>
-                                        <p>{order.customer_name}</p>
-                                        <p>{order.orderdate}</p>
-                                        <p>{order.deliverytype}</p>
-                                        <p>{order.tracking_id}</p>
-                                        <p>${order.ordertotal}</p>
-                                        <p>{order.deliverystatus}</p>
-                                    </div>
-                                ))}
+                                    {/* <div className="checkbox_produtname">
+                                        <input type="checkbox" className="product_checkbox" />
+                                        <p>{order.order_id}</p>
+                                    </div> */}
+                                    <p>{order.order_id}</p>
+                                    <p className="center_text">{order.customer_name}</p>
+                                    <p>{datePart} {timePart}</p>
+                                    <p>{order.deliverytype}</p>
+                                    <p>{order.tracking_id}</p>
+                                    <p>${order.ordertotal}</p>
+                                    <p>{order.deliverystatus}</p>
+                                </div>
+                                );
+                                })}
                             </div>
                         )}
                     </div>

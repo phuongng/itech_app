@@ -3,7 +3,7 @@ import AuthContext from '../context/AuthContext';
 import Navbar from "../components/Navbar/Navbar";
 import "./dashboard.css";
 import '../components/theme_color.css';
-
+import { Link } from "react-router-dom";
 import fetchData from "../utils/FetchData";
 
 // top Dashboard icons
@@ -74,7 +74,7 @@ const Dashboard = () => {
               (order) => order.deliverystatus === "Delivered"
             );
             const completedPaymentOrders = orders.filter(
-              (order) => order.payment_status === "Completed"
+              (order) => order.paymentstatus === "Paid"
             );
 
             setPackedCount(packedOrders.length);
@@ -154,7 +154,27 @@ useEffect(() => {
     fetchInventoryData();
   }, []);
 
-// recent order
+// top selling
+const [topSelling, settopselling] = useState([]);
+useEffect(() => {
+    const fetchTopSelling = async () => {
+      try {
+        const topSelling = await fetchData('https://api.hjhomelab.com/api/TopSelling', authTokens);
+
+        // Get the first 3 top selling items
+        const firstThreeOrders = topSelling.slice(0, 3);
+
+        settopselling(firstThreeOrders);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopSelling();
+  }, []);
+
 
 
 
@@ -227,71 +247,68 @@ useEffect(() => {
 
             {/* middle row - middle dashboard*/}
             <div className="middleDashboard">  
+                <div className="middleDashboard_content">
 
-            {/* Revenue   */}
-                <div className="total Revenue shadowBox">
-                    <div className="icon_vector">
-                        <GiProfit className="profit_icon"/>
-                        <img src={revenue_vector} className=""/>    
-                    </div>
-
-                   
-                    <div className="profit_number">{`$${formattedTotalAmount}`}</div>
-                   
+                {/* Revenue   */}
+                    <div className="total Revenue shadowBox">
+                        <div className="icon_vector">
+                            <GiProfit className="profit_icon"/>
+                            <img src={revenue_vector} className=""/>    
+                        </div>
+                        <div className="profit_number">{`$${formattedTotalAmount}`}</div>
                     
-                    <div className="revenue_percentage">
-                        <div>Total Revenue</div>    
-                        {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div>     */}
-                    </div>    
-                </div>
-
-
-
-           {/* customer */}
-           <div className="total Customer shadowBox"> 
-                <div className="icon_vector">
-                <IoIosPeople className="profit_icon"/>
-                <img src={customer_vector} className=""/>
-                </div>
-                
-               
-                <div className="profit_number">{totalCustomers}</div>
-                 
-
-                <div className="revenue_percentage">
-                    <div>Total Customer</div>
-                    {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
-                </div>
-                  
-                
-                </div>
-
-
-                {/* order */}
-                <div className="total Order shadowBox" >
-                    <div className="icon_vector">
-                        <LuClipboardList className="profit_icon"/>
-                        <img src={order_vector} className=""/>
+                        <div className="revenue_percentage">
+                            <div><h4>Total Revenue</h4></div>    
+                            {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div>     */}
+                        </div>    
                     </div>
-                
-                    <div className="profit_number">{totalOrders}</div>
-                  
+
+                {/* customer */}
+                    <div className="total Customer shadowBox"> 
+                    <div className="icon_vector">
+                    <IoIosPeople className="profit_icon"/>
+                    <img src={customer_vector} className=""/>
+                    </div>
+                    <div className="profit_number">{totalCustomers}</div>
+                    
+
                     <div className="revenue_percentage">
-                        <div>Total Order</div>
+                        <div><h4>Total Customer</h4></div>
                         {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
                     </div>
-                  
-                </div>
+                    
+                    </div>
 
+                {/* order */}
+                    <div className="total Order shadowBox" >
+                        <div className="icon_vector">
+                            <LuClipboardList className="profit_icon"/>
+                            <img src={order_vector} className=""/>
+                        </div>
+                    
+                        <div className="profit_number">{totalOrders}</div>
+                    
+                        <div className="revenue_percentage">
+                            <div><h4>Total Order</h4></div>
+                            {/* <div><BiSolidUpArrow className="uparrow_icon"/> 25%</div> */}
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
 
             {/* bottom dashboard - bottom row */}
             <div className="bottomDashboard">
+                <div className="bottomDashboard_content">
                 <div className="inventory shadowBox">
                     <div className="inventory_viewall">
                         <div><h4>Inventory</h4></div>
-                        <div><p className="viewall">view all <MdOutlineKeyboardDoubleArrowRight/> </p></div>
+
+                        <Link to="/orders" relative="path" className="linkDecor">
+                        <div><p>view all <MdOutlineKeyboardDoubleArrowRight/> </p></div>
+                        </Link>
+                        
                     </div>
 
                     <div className="instock-inventory">
@@ -314,7 +331,7 @@ useEffect(() => {
                     
                     <div>
                         {lowStockItems.map((item) => (     
-                        <div className="topselling_description" key={item.id}>
+                        <div className="recentorder_detail" key={item.id}>
                         <p>{item.product_name}</p>
                         <p>{item.in_stock_total} </p>
                         </div>
@@ -325,12 +342,16 @@ useEffect(() => {
                     </div>
                                
                 </div>
-
                 {/* topSelling */}
                 <div className="topSelling shadowBox"> 
                     <div className="inventory_viewall">
                         <div><h4>Top Selling</h4></div>
                         <div><p>This month <BiSolidDownArrow/> </p></div>
+                    </div>
+
+                    <div className="topselling_description">
+                        <div>Product Name</div>
+                        <div>Sold</div>
                     </div>
                     <div>
                 {loading && <p>Loading...</p>}
@@ -339,7 +360,7 @@ useEffect(() => {
                 {!loading && !error && (
                     <div>
                     {/* Display the first 5 recently ordered items */}
-                    {/* {topSelling.map((item) => (
+                    {topSelling.map((item) => (
                         <div key={item.id} className="recentorder_detail">
                         <div>
                             <p style={{ float: 'left' }}>
@@ -351,20 +372,20 @@ useEffect(() => {
                             <p>{item.Sold}</p>
                         </div>
                         </div>
-                    ))} */}
+                    ))}
                     </div>
                 )}
                 </div>
     
                 </div>
-                
-                
-
                 {/* recentOrders */}
                 <div className="recentOrders shadowBox"> 
                 <div className="inventory_viewall">
                     <div><h4>Recent Orders</h4></div>
+                  
+                    <Link to="/orders" relative="path" className="linkDecor">
                     <div><p>view all <MdOutlineKeyboardDoubleArrowRight/> </p></div>
+                    </Link>
                 </div>
 
                 <div>
@@ -373,45 +394,16 @@ useEffect(() => {
 
                 {!loading && !error && (
                     <div>
-                    {/* Display the first 3 recently ordered items */}
-                    {/* {recentOrders.map((item) => (
-                        <div key={item.id} className="recentorder_detail">
-                        <div>
-                            <p style={{ float: 'left' }}>
-                            <b>{item.name}</b>
-                            </p>
-                            <p>Order ID: {item.order_id}</p>
-                        </div>
-                        <div>
-                            <p>{item.order_date}</p>
-                            <p
-                              className="completed_button"
-                              style={{
-                                backgroundColor:
-                                  item.deliverystatus === "Pending"
-                                    ? "#F8B042"
-                                    : item.deliverystatus === "Lost"
-                                    ? "#cc0000"
-                                    : item.deliverystatus === "Delivered"
-                                    ? "#56dc1c"  
-                                    : "#26599F",
-                              }}
-                            >
-                            {item.deliverystatus}
-                            </p>
-                        </div>
-                        </div>
-                    ))} */}
 
                     {recentOrders.map((item) => (
                         <div key={item.id} className="recentorder_detail">
-                            <div>
-                                <p style={{ float: 'left' }}>
+                            <div  className="recentOrder_customerName">
+                                <p>
                                     <b>{item.customer_name}</b>
                                 </p>
                                 <p>Order ID: {item.order_id}</p>
                             </div>
-                            <div>
+                            <div className="recentOrder_customerName">
                                 <p>{item.orderdate}</p>
                                 <p
                                     className="completed_button"
@@ -435,6 +427,7 @@ useEffect(() => {
                 )}
                 </div>
   
+                </div>
                 </div>
             </div>
 

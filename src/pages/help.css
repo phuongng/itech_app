@@ -1,87 +1,56 @@
-/* Chatbot container */
-.chatbot {
-    max-width: 300px;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  /* Message list */
-  .message-list {
-    max-height: 300px;
-    overflow-y: scroll;
-    padding: 10px;
-  }
-  
-  /* Individual chat bubbles */
-  .chat-bubble {
-    background-color: #e0e0e0;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 5px;
-  }
-  
-  /* Input box and Send button */
-  .input-box {
-    display: flex;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ccc;
-    padding: 10px;
-    position: relative; /* Set the position to relative */
+.chatbotBody{
+  height: 100vh;
+  width: auto; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 100px;  
+}
 
 
-  /* Prevent the duplication of the SVG image */
-  &::before {
-    content: "";
-    background-image: none; /* Remove the default background image */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Ensure the pseudo-element doesn't capture events */
-  }
-  }
+.input_message{
+  display: flex;
+  align-items: center;
+}
 
-  
-  .input-box input {
-    flex: 1;
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-    background-image: none; /* Remove the background image */
-    background-color: #f5f5f5; /* Set the background color */
-    color: #000; /* Set the text color */
-  }
-  
-  /* Hover effect for Send button */
-  .input-box button:hover {
-    background-color: #0056b3;
-  }
+.input_message input{
+  flex: 1; 
+  margin-right: 10px;
+  padding: 5px; 
+}
+.sendMessage_button{
+  padding: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background-color: #26599F;
+  border-radius: 25px;
+  border: 1px solid;
+  color: white;
+}
 
-  
-  .input-box button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for Send button */
-  .input-box button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Chatbot title (if applicable) */
-  .chatbot-title {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
+.sendMessage_button:focus{
+  background-color: #F8B042;
+
+}
+.display_message{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column; 
+  gap: 15px;
+}
+.message-container {
+  text-align: left; /* Default alignment for messages */
+  border: 2px solid #ccc;
+  width: fit-content;
+  display: flex;
+  align-self: flex-start; /* Aligns the message to the start (left) of the container */
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.message-container.right {
+  text-align: right; /* Right alignment for messages with position 'right' */
+  align-self: flex-end;
+  border: 2px solid #26599F;
+}
