@@ -1,17 +1,30 @@
 .mainOrder{
-    width: 100%;
+    /* width: auto; */
     height: 100vh;
     display: grid;
     grid-template-rows: auto auto 1fr;
     gap: 25px;
-    padding: 25px 25px 50px;
-   
+    padding: 25px 25px 50px; 
+
+    @media screen and (max-width: 600px) { 
+      padding: 25px 15px 50px; 
+    }
+    
 }
 
 .topOrder{
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 25px;
+    width: 100%;
+
+    @media screen and (max-width: 600px) { 
+      grid-template-columns: repeat(1, auto);
+      gap: 15px;
+      /* width: 100%; */
+      padding: 0 130px 0 0 ;
+    
+    }
 }
 
 .topOrder_1 {
@@ -41,12 +54,14 @@
   
   .customer_item {
     border-bottom: 1px solid #ddd;
-    padding: 10px;
+    padding: 10px 0;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     justify-content: space-between;
     /* gap: 20px; */
     width: 100%;
+
+    
   }
   
   .product_checkbox {
@@ -57,9 +72,25 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
+    /* @media screen and (max-width: 600px) { 
+      gap: 50px;
+      
+   } */
+   
   }
+
+/* 
+.allorder_detail div{
+display: flex;
+flex-direction: column;
+padding-right: 10px;
+} */
 
   .center_text{
     display: flex;
     justify-content: center;
+  }
+
+.allorder div{
+font-size: 10px;
   }

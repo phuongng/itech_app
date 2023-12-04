@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-
 import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
 import Navbar from '../components/Navbar/Navbar';
@@ -12,6 +11,7 @@ import { PiUserSquareDuotone } from 'react-icons/pi';
 import './dashboard.css';
 import './customer.css';
 import './order.css';
+import './inventory.css';
 import '../components/breadcrum.css';
 
 const ViewCustomer = () => {
@@ -118,22 +118,24 @@ const ViewCustomer = () => {
           // Filtered orders used for this section
           const filteredOrders = orderData.filter(order => order.customer_id === customerData.customer_id);
           return (
-<div className="bottomInventory">
+            <div className="bottomInventory">
             <div className="inventory_summary_search">
                 <h4>Order History</h4>
                 <input type="search" className="inventory_search" placeholder="Search.."></input>
-                <div> <LuFilter />Filter</div>
-                <div><TbArrowsSort />Sort</div>
+                {/* <div> <LuFilter />Filter</div> */}
+                <div className="sort_button"><TbArrowsSort />Sort</div>
             </div>
     
             {/* inventory_detail name */}
             <div>
-                <div className="inventory_detail border_bottom">
-                    <div className="customer_item">
-                        <div className="checkbox_produtname">
-                            <input type="checkbox" className="product_checkbox" />
-                            <p>Order ID</p>
-                        </div>
+                <div className="inventory_detail">
+                    <div className="customer_item ">
+                        {/* <div className="checkbox_produtname"> */}
+                            {/* <input type="checkbox" className="product_checkbox" /> */}
+                            
+                        {/* </div> */}
+                      
+                        <p>Order ID</p>
                         <p>Order Date</p>
                         <p>Tracking ID</p>
                         <p>Order Total</p>
@@ -152,10 +154,11 @@ const ViewCustomer = () => {
                             .filter(order => order.customer_id === customerData.customer_id)
                             .map((order) => (
                                 <div key={order.order_id} className="customer_item">
-                                    <div className="checkbox_produtname">
-                                        <input type="checkbox" className="product_checkbox" />
-                                        <p>{order.order_id}</p>
-                                    </div>
+                                    {/* <div className="checkbox_produtname"> */}
+                                        {/* <input type="checkbox" className="product_checkbox" /> */}
+                                       
+                                    {/* </div> */}
+                                    <p>{order.order_id}</p>
                                     <p>{order.orderdate}</p>
                                     <p>{order.tracking_id}</p>
                                     <p>${order.ordertotal}</p>

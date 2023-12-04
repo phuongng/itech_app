@@ -6,7 +6,9 @@
 }
 .mainCustomer{
     padding: 20px;
+  
 }
+
 .customer_profile{
     display: grid;
     grid-template-columns: repeat(2,auto);
@@ -22,7 +24,13 @@
 .customer_name{
     margin: 0;
     font-size: 20px;
-   
+    color: black;
+ 
+}
+
+
+.customer_name_link{
+    padding-top: 30px;
 }
 
 .customer_avatar_icon{
@@ -44,6 +52,7 @@
     gap: 20px;
     text-align: left;
 }
+
 
 /* spending rate */
 .topOrder_2{
@@ -73,6 +82,7 @@
 
 .search_customer{
     padding: 15px;
+
 }
 
 .spent_money{
@@ -81,4 +91,13 @@
     padding: 4px 0;
     font-size: 12px;
     font-weight: bold;
+}
+
+.sort_button{
+    @media (max-width: 600px) { 
+        font-size: 10px;  
+     }
+     @media (max-width: 450px) { 
+        font-size: 8px;  
+     }
 }

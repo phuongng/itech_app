@@ -40,13 +40,9 @@ import AuthContext from '../../context/AuthContext';
             <NavLink className="navLink" to="/customer" activeStyle>
             <AiOutlineUser className="sidenavIcon"/> 
             <div className="navText"> Customer</div>
-            
             </NavLink>
-            {/* <NavLink className="navLink" to="/report" activeStyle>
-              <MdOutlineAnalytics className="sidenavIcon"/> 
-              <div className="navText"> Report</div>
-            </NavLink>   */}
             </div>
+            
             {/* bottomSideNav */}
             <div className="bottom_SideNav">          
             {/* <NavLink className="navNoLink settings" to="/customer" activeStyle>

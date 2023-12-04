@@ -145,17 +145,10 @@ const NewProduct = () => {
               </div>
 
               <div className="product_input">
-                <p>Back Order</p>
-                <div className="custom-select ">
-                  <select name="order type" value={backOrder} onChange={(e) => setBackOrder(e.target.value)}>
-                    <option value="" disabled hidden defaultValue>
-                      Select an Option
-                    </option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                  </select>
-                </div>
+                <p>Description</p>
+                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
               </div>
+             
             </div>
 
             <div className="product_form_2_columns">
@@ -174,10 +167,18 @@ const NewProduct = () => {
             </div>
 
            
-            <div className="product_form_2_columns">
-              <div className="product_input calendar">
-                <p>Description</p>
-                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <div className="product_form_1_column">
+            <div className="product_input">
+                <p>Back Order</p>
+                <div className="custom-select ">
+                  <select name="order type" value={backOrder} onChange={(e) => setBackOrder(e.target.value)}>
+                    <option value="" disabled hidden defaultValue>
+                      Select an Option
+                    </option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
               </div>
             </div>
 

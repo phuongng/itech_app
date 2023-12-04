@@ -24,12 +24,16 @@
     gap: 20px;
     margin-bottom: 20px;
     align-items: center;
+
+    @media (max-width: 600px) { 
+      margin-bottom: 0;
+   }
 }
 
 .product_input input{
     background-color: #EDECEC;
     box-shadow: none;
-    /* width: 200px; */
+    width: 90%;
     height: 40px;
     border-radius: 10px;
 }
@@ -48,18 +52,44 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
-    gap: 150px;
+    gap: 100px;
+
+    @media (max-width: 800px) {   
+      gap: 50px;
+   }
+
+    @media (max-width: 600px) { 
+      grid-template-columns: repeat(1, 1fr);
+      gap: 10px;
+   }
    
 }
 
-/* .product_form_2_columns select{
-    width: 60%;
-    border-radius: 10px;
-    height: 40px;
-    padding-left: 10px;
-    background-color: #EDECEC;
-    border: none;
-} */
+.product_form_1_column{
+  display: flex;
+  justify-content: start;
+}
+
+.product_form_1_column p{
+  display: flex;
+  justify-content: start;
+
+  @media (max-width: 450px) { 
+    font-size: 10px;
+  }
+
+}
+.product_form_2_columns p{
+
+  @media (max-width: 600px) { 
+    display: flex;
+    justify-content: start;
+  }
+  @media (max-width: 450px) { 
+    font-size: 10px;
+
+  }
+}
 
 .short_description input{
     height: 100px;
@@ -70,6 +100,12 @@
     position: relative;
     display: inline-block;
     width: fit-content;
+
+    @media (max-width: 600px) { 
+      padding-top: 10px;
+   
+   }
+   
     
 }
 
@@ -85,6 +121,14 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #EDECEC;
+
+    @media (max-width: 600px) { 
+      font-size: 10px;    
+   }
+
+   @media (max-width: 450px) { 
+    width: 150px; 
+ }
   }
 
   .custom-select select:focus{

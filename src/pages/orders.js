@@ -3,7 +3,7 @@ import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
 import "./dashboard.css";
 import "./order.css";
-import "./inventory";
+import "./inventory.css";
 import '../components/breadcrum.css';
 import Navbar from '../components/Navbar/Navbar';
 import TopNavbar from "../components/Navbar/topNavbar";
@@ -128,7 +128,7 @@ const Order = () => {
                     <div className="inventory_summary_search">
                         <h4>Customer Orders</h4>
                         <input type="seach" className="inventory_search" placeholder="Search.."></input>
-                        <div onClick={handleSort}><TbArrowsSort />Sort by Date</div>
+                        <div onClick={handleSort} className="sort_button"><TbArrowsSort />Sort by Date</div>
                         {/* <div><LuFilter />Filter</div> */}
                     </div>
 

@@ -249,8 +249,11 @@ useEffect(() => {
                 {/* Revenue   */}
                     <div className="total Revenue shadowBox">
                         <div className="icon_vector">
-                            <GiProfit className="profit_icon"/>
-                            <img src={revenue_vector} className="vector"/>    
+                            <div><GiProfit className="profit_icon"/></div>
+
+                            <div><img src={revenue_vector} className="vector"/></div>
+                            
+                                
                         </div>
                         <div className="profit_number">{`$${formattedTotalAmount}`}</div>
                     
@@ -265,8 +268,6 @@ useEffect(() => {
                     <div className="icon_vector">
                         <div> <IoIosPeople className="profit_icon"/></div>
                         <div>  <img src={customer_vector} className="vector"/></div>
-                   
-                  
                     </div>
                     <div className="profit_number">{totalCustomers}</div>
                     
@@ -281,8 +282,10 @@ useEffect(() => {
                 {/* order */}
                     <div className="total Order shadowBox" >
                         <div className="icon_vector">
-                            <LuClipboardList className="profit_icon"/>
-                            <img src={order_vector} className="vector"/>
+                            <div> <LuClipboardList className="profit_icon"/></div>
+                            <div> <img src={order_vector} className="vector"/></div>
+                           
+                           
                         </div>
                     
                         <div className="profit_number">{totalOrders}</div>

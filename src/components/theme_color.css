@@ -31,9 +31,10 @@ box-shadow:  0 4px 4px  rgba(0, 0, 0, 0.5) ;
 
     @media (max-width: 900px) {
         border-radius: 8px;
-        padding: 8px;     
+         
     } 
 
+        
 }
 
 .shadowBox_no_padding{
@@ -59,26 +60,33 @@ h4{
         font-size: 10px; 
      } 
 
-     @media (max-width: 700px) { 
+     /* @media (max-width: 700px) { 
         font-size: 13px;
-        }  
+        }   */
 }
 
 .app_body{
     width: 100%;
+    height: 100vh;
     display: grid;
     grid-template-columns: 15% 85%;
     padding-top: 80px;
 
 
-     /* @media (max-width: 900px) {
-        grid-template-columns: 15% 85%;
+     /* @media (max-width: 700px) {
+        grid-template-columns: 12% 88%;
 
      }  */
 
-     @media (max-width: 550px) {
+     @media (max-width: 600px) {
         grid-template-columns: 10% 90%;
      } 
 
 }
 
+p{
+ @media (max-width: 900px) {
+       font-size: 12px;
+
+     } 
+}

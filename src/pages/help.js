@@ -72,8 +72,10 @@ const Chatbot = () => {
 
   return (
     <>
+     
+     <TopNavbar className="top_Navbar"/>
+      <div className="app_body">
       <Navbar />
-      <TopNavbar />
       <div className='dashboardBody'>
         <div className='chatbotBody shadowBox'>
           <div className='display_message'>
@@ -96,6 +98,7 @@ const Chatbot = () => {
             </button>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

@@ -132,7 +132,7 @@ const Inventory = () => {
                     <h4>Inventory Summary</h4>
                     <input type="seach" className="inventory_search" placeholder="Search.."></input>
                     {/* <div> <LuFilter />Filter</div> */}
-                    <div onClick={handleSort}><TbArrowsSort />Sort by Quantity</div>
+                    <div onClick={handleSort} className="sort_button"><TbArrowsSort />Sort by Quantity</div>
                    </div>
 
                    {/* inventory_detai */}

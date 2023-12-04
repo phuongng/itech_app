@@ -4,7 +4,15 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 100px;  
+
+  @media screen and (max-width: 1000px) {
+    padding: 50px;  
+} 
+  @media screen and (max-width: 600px) {
+    padding: 20px;  
+} 
 }
+
 
 
 .input_message{
