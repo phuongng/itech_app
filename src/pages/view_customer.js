@@ -65,11 +65,11 @@ const ViewCustomer = () => {
 
     const getSpendingRateColor = (percentage) => {
         if (percentage >= 75) {
-            return '#26599F';
+            return { backgroundColor: '#26599F', color: 'white' };
         } else if (percentage >= 50) {
-            return "#9ACBE6";
+            return { backgroundColor: "#9ACBE6", color: 'black' };
         } else {
-            return '#F8B042';
+            return { backgroundColor: '#F8B042', color: 'black' };
         }
     };
 
@@ -195,7 +195,7 @@ const renderSpendingRateSection = () => {
         <div className="topOrder_2 shadowBox">
             <p>Spending Rate</p>
             <div className="spendingrate_bar">
-                <div className="spent_rate" style={{ width: `${spendingRatePercentage}%`, backgroundColor: getSpendingRateColor(spendingRatePercentage) }}>
+                <div className="spent_rate" style={{ width: `${spendingRatePercentage}%`,  ...getSpendingRateColor(spendingRatePercentage) }}>
                     <div className="spent_money">${totalSpending.toFixed(2)}</div>
                 </div>
             </div>
