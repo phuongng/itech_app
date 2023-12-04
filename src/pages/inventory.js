@@ -6,6 +6,7 @@ import "./dashboard.css";
 import "./inventory.css";
 import '../components/breadcrum.css';
 import Navbar from '../components/Navbar/Navbar';
+import TopNavbar from "../components/Navbar/topNavbar";
 
 
 // import addnewproduct from '../pages/subpages/newinventory_form';
@@ -67,6 +68,9 @@ const Inventory = () => {
       }, 0);
     return (
         <>
+     
+        <TopNavbar />
+        <div className="app_body">
         <Navbar />
         <div className="dashboardBody">
           {/* breadcrumb   */}
@@ -188,6 +192,8 @@ const Inventory = () => {
            
 
         </div>
+        </div>
+
         </>
     );
 };

@@ -75,7 +75,7 @@ return (
                                 />
                                 <p>Remember me</p>
                                 </div>
-                                <div>
+                                <div className="rememberMe">
                                 <p>Forgot Password</p>
                                 </div>
                             </div>

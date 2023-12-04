@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 
 import Dashboard from './pages/dashboard';
 import Inventory from './pages/inventory';
@@ -12,8 +11,7 @@ import Chatbot from './pages/help';
 import ViewCustomer from './pages/view_customer';
 import NewProduct from './pages/subpages/newproduct';
 import Product_detail from './pages/subpages/product_detail';
-import Category from './pages/subpages/category';
-import HomePage from './pages/HomePage';
+// import Category from './pages/subpages/category';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 import PrivateRoute from './utils/PrivateRoute'
@@ -42,7 +40,7 @@ function App() {
 							<Route path='/customer/:name' exact element={<PrivateRoute><ViewCustomer /></PrivateRoute>} />
 							<Route path='/inventory/new_product' element={<PrivateRoute><NewProduct/></PrivateRoute>} />
 							<Route path='/inventory/product_detail' element={<PrivateRoute><Product_detail/></PrivateRoute>} />
-							<Route path='/inventory/category' element={<PrivateRoute><Category/></PrivateRoute>} />
+							{/* <Route path='/inventory/category' element={<PrivateRoute><Category/></PrivateRoute>} /> */}
 						</Routes>
 				</AuthProvider>
 				</Router>

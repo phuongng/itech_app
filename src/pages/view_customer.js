@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
 import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
 import Navbar from '../components/Navbar/Navbar';
+import TopNavbar from "../components/Navbar/topNavbar";
 import Breadcrumb from '../components/breadcrumb';
 import { LuFilter } from 'react-icons/lu';
 import { TbArrowsSort } from 'react-icons/tb';
@@ -237,6 +238,8 @@ const renderSpendingRateSection = () => {
 
     return (
         <>
+            <TopNavbar />
+            <div className="app_body">
             <Navbar />
             <div className="dashboardBody">
                 <div className="breadcrumBody">
@@ -257,6 +260,7 @@ const renderSpendingRateSection = () => {
 
                     {renderOrderHistorySection()}
                 </div>
+            </div>
             </div>
         </>
     );

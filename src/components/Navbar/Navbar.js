@@ -1,21 +1,14 @@
 import React, { useContext }from "react";
 import { Nav, NavLink, NavMenu, NavBtnLink, } from './NavbarElements';
-import { jwtDecode } from 'jwt-decode';
 import "./navbar.css";
-import logo from '../../image/logo.png';
+
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdOutlineInventory2 } from "react-icons/md";
-import { MdOutlineAnalytics } from "react-icons/md";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { MdOutlineSettings } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineLogout } from "react-icons/ai";
 import { AiOutlineCustomerService } from "react-icons/ai";
-import { RxAvatar } from "react-icons/rx";
-import { MdOutlineNotificationsNone } from "react-icons/md";
-import { Link } from 'react-router-dom'
-import AuthContext from '../../context/AuthContext'
-
+import AuthContext from '../../context/AuthContext';
 
 
   const Navbar = () => { 
@@ -73,7 +66,7 @@ import AuthContext from '../../context/AuthContext'
           </NavMenu>
         </Nav>
         </div>
-      <div className="topNavbar">
+      {/* <div className="topNavbar">
         <div className="logo">
         <img src={logo} className="navbarImage"/>
         </div>
@@ -91,7 +84,7 @@ import AuthContext from '../../context/AuthContext'
           <RxAvatar className="topnavIcon"/>
           </div>
         </div>
-      </div>
+      </div> */}
         </>
     );
 };

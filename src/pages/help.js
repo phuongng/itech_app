@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar/Navbar';
+import TopNavbar from "../components/Navbar/topNavbar";
 import './help.css';
 import '../components/theme_color.css';
 import '../pages/dashboard.css';
@@ -72,6 +73,7 @@ const Chatbot = () => {
   return (
     <>
       <Navbar />
+      <TopNavbar />
       <div className='dashboardBody'>
         <div className='chatbotBody shadowBox'>
           <div className='display_message'>

@@ -1,0 +1,104 @@
+.logo{
+    width: 200px;
+    height: 100%;
+    padding: 10px;
+    
+    @media screen and (max-width: 1000px) { 
+        width: 150px;
+    }
+    @media screen and (max-width: 550px) { 
+        width: 50px;
+        box-shadow: none;
+        padding-top: 10px;
+
+    }
+}
+
+.navbarImage{
+    width: 100px;
+    @media screen and (max-width: 550px) { 
+        width: 70px;
+        
+    }
+
+}
+
+.topNavbar{
+    z-index: 10;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    top:0;
+    width: 100%;
+    align-items: center;
+    background-color: white ;
+    /* box-shadow: 0 0 10px 1px rgba(0, 0, 0, .25);
+    backdrop-filter: blur(15px); */
+    justify-content: space-between;
+
+
+    @media screen and (max-width: 1000px) { 
+        height: 80px;
+    }
+    @media screen and (max-width: 550px) { 
+        height: 60px;
+    }
+
+}
+
+.searchbar{
+    width: 40vw;
+    height: 40px;
+    margin-top: 0;
+    margin-left: 35px;
+    padding-left: 25px;
+    align-items: center;  
+    border-radius: 20px; 
+    background-color: white;
+    box-shadow:  0 2px 4px  rgba(187, 187, 187, 0.5) ;
+
+    @media screen and (max-width: 550px) { 
+       display: none;
+    }
+}
+
+
+.topNavRight{
+    height: 40px;
+    align-items: center;  
+    margin-right: 25px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+
+    @media screen and (max-width: 740px) {
+        margin-right: 20px;
+    } 
+    @media screen and (max-width: 530px) { 
+        margin-right: 15px;
+     }
+
+}
+
+.topnavIcon{
+    color: #26599F;
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+.name{
+    color: #26599F;
+    font-size: 25px;
+}
+
+.searchText{
+    color: rgb(84, 84, 84, 0.75) ;
+    font: 1em sans-serif;
+    margin-left: 10px;
+
+    @media screen and (max-width: 550px) { 
+        display: none;
+     }
+
+}

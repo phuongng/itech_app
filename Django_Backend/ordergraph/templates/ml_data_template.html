@@ -1,0 +1,21 @@
+<!-- templates/ml_data_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression Analysis</title>
+</head>
+<body>
+    <h1>Linear Regression Analysis</h1>
+    
+    <p>Coefficients:</p>
+    <pre>{{ coefficients|safe }}</pre>
+
+    <p>Summary:</p>
+    <pre>{{ summary|safe }}</pre>
+
+    <p>Plot:</p>
+    <img src="data:image/png;base64,{{ plot }}" alt="Linear Regression Plot">
+</body>
+</html>

@@ -1,8 +1,8 @@
-import React, { Component, Fragment, useState, useEffect,useContext } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 import { PiUserSquareDuotone } from "react-icons/pi";
 import "./dashboard.css";
 import "./customer.css";
@@ -10,6 +10,7 @@ import "./order.css";
 import "./inventory";
 import '../components/breadcrum.css';
 import Navbar from '../components/Navbar/Navbar';
+import TopNavbar from "../components/Navbar/topNavbar";
 
 // import addnewproduct from '../pages/subpages/newinventory_form';
 import Breadcrumb from '../components/breadcrumb';
@@ -49,6 +50,9 @@ const Customer = () => {
 
     return (
         <>
+       
+        <TopNavbar />
+        <div className="app_body">
         <Navbar />
         <div className="dashboardBody">
         {/* breadcrumb   */}
@@ -87,6 +91,7 @@ const Customer = () => {
           ))}
         </div>
       </div>
+</div>
         </>
     );
 };

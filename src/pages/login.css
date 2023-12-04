@@ -44,10 +44,10 @@ body{
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, .25);
     backdrop-filter: blur(15px);
 
-    @media (max-width: 1024px) {
+    @media (min-height: 1300px) {
         grid-template-columns: repeat(1, auto);
-
     } 
+
     @media (max-width: 900px) {
         display: block;
 
@@ -82,6 +82,10 @@ body{
         margin-top: -60px;
     }
 
+    @media (min-height: 1300px) {
+        margin-top: 0px;
+    } 
+    
     @media(max-height: 700px) { 
         margin-top: -70px;
     }
@@ -94,6 +98,21 @@ body{
         padding: 20px;
         margin-top: auto;
     }
+}
+
+.loginLeft p{
+    @media (max-width: 900px) {
+        padding-bottom: 20px;    
+    }
+
+    @media (min-height: 1300px) {
+        padding-bottom: 20px; 
+    }
+
+    @media (max-width: 300px) {
+       font-size: 12px;
+     }
+
 }
 form{
     margin: 30px 0;
@@ -135,10 +154,38 @@ input{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     font-size: small;
+   
+    @media (max-width: 300px) {
+        display: flex;
+        justify-content: space-between;
+     }
+
 }
 
 .rememberMe{
     display: flex;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        display: flex;
+    align-items: center;   
+    }
+
+}
+
+.rememberMe p{
+
+    @media (max-width: 900px) {
+        padding: 0; 
+    }
+    @media (min-height: 1300px) {
+      padding: 0;
+    }
+
+    @media (max-width: 300px) {
+       font-size: 8px;
+    }
+
 }
 
 .checkBox{
@@ -222,16 +269,17 @@ h1, label{
 .password-input{
     display: flex;
     width: 100%;
-    height: 60px;
+    height: fit-content;
     border-radius: 15px;
     margin-top: 10px ;
     background-color: white;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, .25);
     backdrop-filter: blur(15px);
 
-    @media(max-width: 1200px) {
+    /* @media(max-width: 1200px) {
         height: 50px;  
-      }
+      } */
+
 }
 
 .password-input input{

@@ -1,0 +1,652 @@
+[
+  {
+    "orderdate": "2020-11-10T09:37:39Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-02-23T04:14:55Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2021-05-21T15:23:29Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2021-10-23T04:50:30Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2021-09-18T02:27:33Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bob"
+  },
+  {
+    "orderdate": "2022-01-19T09:54:19Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2022-06-10T02:11:14Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2021-05-02T00:05:38Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Henry"
+  },
+  {
+    "orderdate": "2023-04-30T08:05:27Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2020-12-03T10:44:10Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2022-07-01T04:03:29Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2021-12-19T16:08:51Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2022-05-22T12:19:33Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2022-07-12T10:03:41Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2023-09-29T08:15:31Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Henry"
+  },
+  {
+    "orderdate": "2020-06-09T23:34:17Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bob"
+  },
+  {
+    "orderdate": "2020-07-30T06:33:07Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2020-01-31T14:04:43Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-11-18T04:15:52Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-07-26T17:20:53Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-04-28T18:40:31Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2020-09-29T20:00:00Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2023-05-08T15:29:49Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2023-10-07T03:24:30Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2020-09-20T17:09:20Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2020-06-30T04:43:45Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2020-11-20T21:09:27Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2021-11-19T14:10:08Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-08-24T17:28:03Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2023-10-16T03:27:47Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Bob"
+  },
+  {
+    "orderdate": "2023-10-04T05:52:21Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Henry"
+  },
+  {
+    "orderdate": "2020-04-12T12:26:26Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Henry"
+  },
+  {
+    "orderdate": "2021-12-31T12:25:06Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2022-03-28T10:32:53Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bob"
+  },
+  {
+    "orderdate": "2022-10-24T18:54:41Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2021-11-13T22:38:28Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2020-08-25T10:17:54Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2021-10-20T13:32:59Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2020-10-16T21:34:33Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2022-07-04T22:37:49Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Phuong N"
+  },
+  {
+    "orderdate": "2021-01-13T10:31:12Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2022-08-18T09:40:37Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2020-11-30T20:36:26Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Lost",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Eliana"
+  },
+  {
+    "orderdate": "2021-06-24T15:57:59Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Delivered",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bob"
+  },
+  {
+    "orderdate": "2020-07-02T03:35:18Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2021-01-14T23:08:02Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2022-11-14T21:44:27Z",
+    "deliverytype": "Express",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2023-09-05T09:51:20Z",
+    "deliverytype": "3-Day",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Pending",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 2
+      }
+    ],
+    "customer_name": "Sunny"
+  },
+  {
+    "orderdate": "2022-09-19T15:55:02Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Shipped",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 1
+      }
+    ],
+    "customer_name": "Bryan"
+  },
+  {
+    "orderdate": "2023-09-01T16:01:31Z",
+    "deliverytype": "Standard",
+    "deliverystatus": "Pending",
+    "paymentstatus": "Paid",
+    "products": [
+      {
+        "product_name": "ITPhone",
+        "quantity": 3
+      }
+    ],
+    "customer_name": "Phuong N"
+  }
+]

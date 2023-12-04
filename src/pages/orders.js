@@ -1,12 +1,12 @@
 import React, { Component, Fragment, useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
 import fetchData from "../utils/FetchData";
-import axios from 'axios';
 import "./dashboard.css";
 import "./order.css";
 import "./inventory";
 import '../components/breadcrum.css';
 import Navbar from '../components/Navbar/Navbar';
+import TopNavbar from "../components/Navbar/topNavbar";
 import Breadcrumb from '../components/breadcrumb';
 import {LuFilter} from 'react-icons/lu';
 import {TbArrowsSort} from 'react-icons/tb';
@@ -70,7 +70,11 @@ const Order = () => {
 
     return (
         <>
+        <TopNavbar />
+
+        <div className="app_body">
         <Navbar />
+        
         <div className="dashboardBody">
             <div className="breadcrumBody">
                 <Breadcrumb className="breadcrumDiv"/>
@@ -173,6 +177,7 @@ const Order = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </>
     );

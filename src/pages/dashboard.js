@@ -1,6 +1,7 @@
 import React, { useState, useEffect,useContext } from "react";
 import AuthContext from '../context/AuthContext';
 import Navbar from "../components/Navbar/Navbar";
+import TopNavbar from "../components/Navbar/topNavbar";
 import "./dashboard.css";
 import '../components/theme_color.css';
 import { Link } from "react-router-dom";
@@ -176,22 +177,18 @@ useEffect(() => {
   }, []);
 
 
-
-
-
-
-
-
   return (user ? (
         <>
-        <Navbar />
-        <div className="dashboardBody">
-            <div className="dashboard">
+        <TopNavbar className="top_Navbar"/>
+        <div className="app_body">
+        <Navbar /> 
+        {/* <div className="dashboardBody"> */}
+            <div className="dashboardBody">
             {/* first row - top dashboard will include sale activity section and inventory summary section*/}
             <div className="topDashboard">
                 <div className="topDashboard_content">
                 {/* saleActivity*/}
-                <div className="saleActivity">
+                {/* <div className="saleActivity"> */}
                 <div><h4 className="titletext" >Sale Activity</h4> </div>
                 <div className="saleActivityBox">
                     <div className="shadowBox saleBox">
@@ -240,7 +237,7 @@ useEffect(() => {
                         </div>
                     </div>
                     </div>
-            </div>
+            
 
             </div> {/* end topDashboard_content */}
             </div> {/* end topDashboard */}
@@ -253,7 +250,7 @@ useEffect(() => {
                     <div className="total Revenue shadowBox">
                         <div className="icon_vector">
                             <GiProfit className="profit_icon"/>
-                            <img src={revenue_vector} className=""/>    
+                            <img src={revenue_vector} className="vector"/>    
                         </div>
                         <div className="profit_number">{`$${formattedTotalAmount}`}</div>
                     
@@ -266,8 +263,10 @@ useEffect(() => {
                 {/* customer */}
                     <div className="total Customer shadowBox"> 
                     <div className="icon_vector">
-                    <IoIosPeople className="profit_icon"/>
-                    <img src={customer_vector} className=""/>
+                        <div> <IoIosPeople className="profit_icon"/></div>
+                        <div>  <img src={customer_vector} className="vector"/></div>
+                   
+                  
                     </div>
                     <div className="profit_number">{totalCustomers}</div>
                     
@@ -283,7 +282,7 @@ useEffect(() => {
                     <div className="total Order shadowBox" >
                         <div className="icon_vector">
                             <LuClipboardList className="profit_icon"/>
-                            <img src={order_vector} className=""/>
+                            <img src={order_vector} className="vector"/>
                         </div>
                     
                         <div className="profit_number">{totalOrders}</div>
@@ -409,13 +408,13 @@ useEffect(() => {
                                     className="completed_button"
                                     style={{
                                         backgroundColor:
-                                            item.deliverystatus === "Pending"
-                                                ? "#F8B042"
-                                                : item.deliverystatus === "Lost"
-                                                    ? "#F8B042"
-                                                    : item.deliverystatus === "Delivered"
-                                                        ? "#26599F"
-                                                        : "#9ACBE6",
+                                        item.deliverystatus === "Pending"
+                                        ? "#F8B042"
+                                        : item.deliverystatus === "Lost"
+                                        ? "#F8B042"
+                                        : item.deliverystatus === "Delivered"
+                                        ? "#26599F"
+                                        : "#9ACBE6",
                                     }}
                                 >
                                     {item.deliverystatus}
@@ -432,7 +431,8 @@ useEffect(() => {
             </div>
 
           </div> {/* end dashboard */}
-        </div> {/* end dashboardBody */}
+        {/* end dashboardBody */}
+        </div> 
         </>):(
         <div>
             <p>You are not logged in, redirecting...</p>
